@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@layer base {
+	:root {
+		--color-mosque-green: #0d6b4d;
+		--color-mosque-gold: #c6a15b;
+		--color-mosque-dark: #0b132b;
+		--color-mosque-light: #f8faf9;
+	}
+	html, body, #app { height: 100%; }
+	body {
+		background: radial-gradient(1200px 600px at 20% -10%, #d1fae5 0%, rgba(209,250,229,0) 50%),
+			radial-gradient(1000px 500px at 120% 10%, #dbeafe 0%, rgba(219,234,254,0) 45%),
+			var(--color-mosque-light);
+		/* Avoid @apply of text utilities in v4 base scope */
+		color: #1f2937; /* slate-800 */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+}
+
+@layer components {
+	.card { @apply bg-white/80 backdrop-blur rounded-2xl shadow-xl border border-white/60; }
+	.btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-[#0d6b4d] px-5 py-3 text-white font-semibold hover:bg-emerald-700 transition shadow-xl; }
+	.btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#0d6b4d]/30 text-[#0d6b4d] px-5 py-3 hover:bg-[#0d6b4d]/5; }
+	.badge { @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium border; }
+}
+
+@layer utilities {
+	.pattern-grid {
+		background-image: linear-gradient(to right, rgba(12,18,43,.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(12,18,43,.06) 1px, transparent 1px);
+		background-size: 28px 28px;
+	}
+	.radial-spot {
+		background: radial-gradient(500px 200px at 70% 0%, rgba(12,107,77,.12), transparent 60%);
+	}
+	.float-slow { animation: floatY 6s ease-in-out infinite; }
+	@keyframes floatY { 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-6px) } }
+	.progress-ring { --p: 0; background:
+		conic-gradient(#10b981 calc(var(--p)*1%), #e5e7eb 0);
+	}
+} 
