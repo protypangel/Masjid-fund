@@ -3,6 +3,7 @@ import QrcodeVue from 'qrcode.vue'
 import Title from '../../../components/title.vue'
 import ListStatCard from '../List-Stat-Card.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import Logo from '../../../assets/logo.svg';
 
 const quotes = [
 	{ ar: 'وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا', fr: 'Et quiconque lui fait don de la vie, c\'est comme s\'il faisait don de la vie à tous les hommes', ref: 'Coran 5:32' },
@@ -24,13 +25,13 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
 </script>
 
 <template>
-  <section class="h-full">
-    <!-- <div class="absolute inset-0 pattern-grid opacity-40 pointer-events-none"></div>
-    <div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-200 blur-3xl opacity-70"></div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12">
+  <section class="h-full relative overflow-hidden">
+    <div class="absolute inset-0 pattern-grid opacity-40 pointer-events-none flex items-center justify-center"></div>
+    
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12 h-full flex flex-col">
       <Title>
         <template #title>
-          <span class="text-[#0d6b4d]">نور السلام</span> – Construisons notre mosquée
+          <span class="text-secondary">نور السلام</span> <span class="text-accent">–</span> Construisons notre mosquée
         </template>
         <template #subtitle>
           Merci pour votre générosité et votre soutien à cette noble cause
@@ -38,7 +39,7 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
       </Title>
 
       <ListStatCard />
-
+<!-- 
       <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
         <div class="card shadow-2xl p-8 radial-spot">
           <h3 class="text-lg font-semibold text-[#0b132b] mb-4 flex items-center gap-2"><span class="text-[#0d6b4d]">▦</span> Participer à la collecte</h3>
@@ -73,8 +74,8 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
             </div>
           </div>
         </div>
-      </div>
-    </div> -->
+      </div> -->
+    </div>
   </section>
 </template>
   

@@ -6,8 +6,8 @@ import SectionMoreInfo from '../view-component/presentation/sections/more-info.v
 </script>
 
 <template>
-<div class="h-full w-full flex-col bg-secondary">
-	<SectionHeader class="h-full bg-accent"/>
+<div class="h-full w-full flex-col ">
+	<SectionHeader class="h-full"/>
 	<SectionHeader class="h-full bg-primary"/>
 </div>
 </template>

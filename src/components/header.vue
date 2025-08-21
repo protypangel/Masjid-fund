@@ -4,18 +4,9 @@ import Mail from '../assets/Mail.svg'
 import Phone from '../assets/Phone.svg'
 import AnimationText from './animation-text.vue'
 import { computed } from 'vue'
+import type { Header as HeaderType } from './interfaces/Header'
 
-
-const props = defineProps<{
-  mobileOpen: boolean
-  isActive: (path: string) => boolean,
-  phone: string,
-  email: string,
-  navItems: {
-    label: string,
-    path: string
-  }[]
-}>();
+const props = defineProps<HeaderType>();
 
 function colorFromActive(path: string): string {
   return props.isActive(path) ? 'text-primary' : 'text-foreground'
@@ -37,7 +28,6 @@ const hrefList = computed(() => {
       class="flex gap-4 items-center">
         <Logo class="w-8 h-auto"/>
         <div :class="colorFromActive('/')">
-          <!-- <span class="h-fit font-bold text-base">Nour Essalam</span> -->
             <AnimationText :duration="2" class="text-base font-bold">Nour Essalam</AnimationText>
         </div>
       </RouterLink>
@@ -60,11 +50,11 @@ const hrefList = computed(() => {
           v-for="(item, index) in hrefList"
           :key="index"
           ref="`${item[0]}:${item[1]}`"
-          class="inline-flex items-center gap-2"
+          class="inline-flex items-center gap-2 text-accent hover:text-primary cursor-pointer"
           >
+          <component :is="item[2]" :width="16" class="" />
             <AnimationText :duration="2">
               <div class="flex gap-2 items-center">
-                <component :is="item[2]" />
                 <p class="font-semibold">{{ item[1] }}</p>
               </div>
             </AnimationText>

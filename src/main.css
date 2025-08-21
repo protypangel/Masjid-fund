@@ -33,27 +33,28 @@
 	.progress-ring { --p: 0; background:
 		conic-gradient(#10b981 calc(var(--p)*1%), #e5e7eb 0);
 	}
+
 } 
 @theme {
-	--color-primary: #209268;
-	--color-primary-foreground: #FFFFFF;
-	--color-primary-light: #E1F4ED;
-	--color-secondary: #F0C238;
-	--color-secondary-foreground: #1B2232;
-	--color-secondary-light: #FDFBE7;
-	--color-accent: #23365C;
-	--color-accent-foreground: #FFFFFF;
-	--color-accent-light: #EDF0FB;
-	--color-background: #FDFDFC;
-	--color-foreground: #1B2232;
-	--color-muted: #F3F4F6;
-	--color-muted-foreground: #626D84;
-	--color-border: #E2E4E9;
-	--color-destructive: #E23636;
-	--color-destructive-foreground: #FFFFFF;
-	--color-input: #EDEFF2;
-	--color-slider-background: #FAFAFA;
-	--color-header: #FDFDFC;
+	--color-primary: hsl(158, 64%, 35%);
+	--color-primary-foreground: hsl(0, 0%, 100%);
+	--color-primary-light: hsl(158, 47%, 92%);
+	--color-secondary: hsl(45, 86%, 58%);
+	--color-secondary-foreground: hsl(222, 30%, 15%);
+	--color-secondary-light: hsl(54, 84%, 95%);
+	--color-accent: hsl(220, 45%, 25%);
+	--color-accent-foreground: hsl(0, 0%, 100%);
+	--color-accent-light: hsl(227, 63%, 96%);
+	--color-background: hsl(60, 20%, 99%);
+	--color-foreground: hsl(222, 30%, 15%);
+	--color-muted: hsl(220, 15%, 96%);
+	--color-muted-foreground: hsl(221, 15%, 45%);
+	--color-border: hsl(223, 14%, 90%);
+	--color-destructive: hsl(0, 75%, 55%);
+	--color-destructive-foreground: hsl(0, 0%, 100%);
+	--color-input: hsl(216, 16%, 94%);
+	--color-slider-background: hsl(0, 0%, 98%);
+	--color-header: hsl(60, 20%, 99%);
 }
 @theme {
 	--text-xs: 14px;
