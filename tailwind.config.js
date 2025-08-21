@@ -7,12 +7,25 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				mosque: {
-					green: '#0d6b4d',
-					gold: '#c6a15b',
-					dark: '#0b132b',
-					light: '#f8faf9',
-				},
+				primary: '#209268',
+				'primary-foreground': '#FFFFFF',
+				'primary-light': '#E1F4ED',
+				secondary: '#F0C238',
+				'secondary-foreground': '#1B2232',
+				'secondary-light': '#FDFBE7',
+				accent: '#23365C',
+				'accent-foreground': '#FFFFFF',
+				'accent-light': '#EDF0FB',
+				background: '#FDFDFC',
+				foreground: '#1B2232',
+				muted: '#F3F4F6',
+				'muted-foreground': '#626D84',
+				border: '#ff0000',
+				destructive: '#E23636',
+				'destructive-foreground': '#FFFFFF',
+				input: '#EDEFF2',
+				'slider-background': '#FAFAFA',
+				header: '#FDFDFC',
 			},
 			fontFamily: {
 				display: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

@@ -1,12 +1,6 @@
 @import "tailwindcss";
 
 @layer base {
-	:root {
-		--color-mosque-green: #0d6b4d;
-		--color-mosque-gold: #c6a15b;
-		--color-mosque-dark: #0b132b;
-		--color-mosque-light: #f8faf9;
-	}
 	html, body, #app { height: 100%; }
 	body {
 		background: radial-gradient(1200px 600px at 20% -10%, #d1fae5 0%, rgba(209,250,229,0) 50%),
@@ -40,3 +34,32 @@
 		conic-gradient(#10b981 calc(var(--p)*1%), #e5e7eb 0);
 	}
 } 
+@theme {
+	--color-primary: #209268;
+	--color-primary-foreground: #FFFFFF;
+	--color-primary-light: #E1F4ED;
+	--color-secondary: #F0C238;
+	--color-secondary-foreground: #1B2232;
+	--color-secondary-light: #FDFBE7;
+	--color-accent: #23365C;
+	--color-accent-foreground: #FFFFFF;
+	--color-accent-light: #EDF0FB;
+	--color-background: #FDFDFC;
+	--color-foreground: #1B2232;
+	--color-muted: #F3F4F6;
+	--color-muted-foreground: #626D84;
+	--color-border: #E2E4E9;
+	--color-destructive: #E23636;
+	--color-destructive-foreground: #FFFFFF;
+	--color-input: #EDEFF2;
+	--color-slider-background: #FAFAFA;
+	--color-header: #FDFDFC;
+}
+@theme {
+	--text-xs: 14px;
+	--text-sm: 16px;
+	--text-base: 18px;
+	--text-lg: 24px;
+	--text-xl: 32px;
+	--text-2xl: 60px;
+}

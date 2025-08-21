@@ -1,5 +1,23 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import QrcodeVue from 'qrcode.vue'
+
+const quotes = [
+	{ ar: 'وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا', fr: 'Et quiconque lui fait don de la vie, c\'est comme s\'il faisait don de la vie à tous les hommes', ref: 'Coran 5:32' },
+	{ fr: 'L’aumône n’a jamais diminué une richesse.', ref: 'Muslim' },
+	{ fr: 'Quiconque construit une mosquée pour Allah, Allah lui construit son équivalent au Paradis.', ref: 'Al-Bukhari & Muslim' },
+	{ fr: 'Le meilleur des gens est le plus utile aux autres.', ref: 'Hadith' }
+]
+const currentQuoteIndex = ref(0)
+let intervalId: number | undefined
+
+onMounted(() => {
+	intervalId = window.setInterval(() => {
+		currentQuoteIndex.value = (currentQuoteIndex.value + 1) % quotes.length
+	}, 6000)
+})
+
+onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
 </script>
 
 <template>
@@ -7,43 +25,71 @@ import QrcodeVue from 'qrcode.vue'
 	<section class="relative overflow-hidden">
 		<div class="absolute inset-0 pattern-grid opacity-20 pointer-events-none"></div>
 		<div class="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gradient-to-tr from-emerald-200 to-sky-200 blur-3xl opacity-70"></div>
-		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-12 lg:pb-20">
-			<div class="grid lg:grid-cols-2 gap-12 items-center">
-				<div class="space-y-6">
-					<span class="badge border-[#0d6b4d]/30 text-[#0d6b4d] bg-emerald-50">Projet communautaire</span>
-					<h1 class="text-4xl sm:text-5xl font-bold leading-tight text-[#0b132b]">
-						Aidez à construire notre nouvelle mosquée
-						<span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0d6b4d] to-emerald-600">&nbsp;chaque don compte</span>.
-					</h1>
-					<p class="text-slate-600 text-lg max-w-xl">
-						Votre contribution élève un lieu de culte, d’éducation et de fraternité. Qu’Allah accepte vos dons.
-					</p>
-					<div class="flex flex-wrap gap-3">
-						<a href="#plans" class="btn-ghost">Voir les plans</a>
-						<a href="#infos" class="btn-primary">Infos pratiques</a>
-					</div>
-					<div class="grid grid-cols-3 gap-6 pt-4">
-						<div class="text-center">
-							<div class="text-3xl font-bold text-[#0b132b]">1 200m²</div>
-							<div class="text-xs text-slate-500">Surface</div>
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12">
+			<div class="text-center max-w-3xl mx-auto">
+				<h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#0b132b]">
+					<span class="text-[#0d6b4d]">نور السلام</span> – Construisons notre mosquée
+				</h1>
+				<p class="mt-3 text-slate-600 text-lg">Merci pour votre générosité et votre soutien à cette noble cause</p>
+			</div>
+
+			<!-- Stat cards -->
+			<div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div class="rounded-2xl bg-white border border-white/60 shadow-soft p-6">
+					<div class="text-sm text-slate-600">Total collecté</div>
+					<div class="mt-1 text-2xl font-bold text-[#0b132b]">847 500 €</div>
+					<div class="text-xs text-emerald-600 mt-1">+2.5% cette semaine</div>
+				</div>
+				<div class="rounded-2xl bg-white border border-white/60 shadow-soft p-6">
+					<div class="text-sm text-slate-600">Dernier Jumu'ah</div>
+					<div class="mt-1 text-2xl font-bold text-[#0b132b]">12 300 €</div>
+					<div class="text-xs text-slate-500 mt-1">Vendredi dernier</div>
+				</div>
+				<div class="rounded-2xl bg-white border border-white/60 shadow-soft p-6">
+					<div class="text-sm text-slate-600">Prochain Palier</div>
+					<div class="mt-1 text-2xl font-bold text-[#0b132b]">52 500 €</div>
+					<div class="text-xs text-slate-500 mt-1">Restants à collecter</div>
+				</div>
+				<div class="rounded-2xl bg-white border border-white/60 shadow-soft p-6">
+					<div class="text-sm text-slate-600">Objectif Global</div>
+					<div class="mt-1 text-2xl font-bold text-[#0b132b]">1 200 000 €</div>
+					<div class="text-xs text-slate-500 mt-1">Budget total projet</div>
+				</div>
+			</div>
+
+			<!-- Grid: QR + Rappels -->
+			<div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
+				<div class="card shadow-2xl p-8 radial-spot">
+					<h3 class="text-lg font-semibold text-[#0b132b] mb-4 flex items-center gap-2"><span class="text-[#0d6b4d]">▦</span> Participer à la collecte</h3>
+					<div class="text-center">
+						<div class="relative inline-grid place-items-center">
+							<div class="absolute inset-0 -z-10 blur-xl opacity-40 bg-[radial-gradient(closest-side,theme(colors.emerald.300),transparent)]"></div>
+							<div class="p-2 rounded-2xl bg-gradient-to-br from-amber-200/70 to-emerald-100 border border-amber-300/40">
+								<div class="rounded-xl bg-white p-2 border border-amber-300/30">
+									<QrcodeVue value="https://votre-cagnotte.example" :size="220" level="H" class="mx-auto float-slow"/>
+								</div>
+							</div>
 						</div>
-						<div class="text-center">
-							<div class="text-3xl font-bold text-[#0b132b]">500+</div>
-							<div class="text-xs text-slate-500">Fidèles</div>
+						<div class="mt-6">
+							<a href="https://votre-cagnotte.example" target="_blank" class="btn-primary px-6 py-3 text-base">Scannez pour contribuer</a>
 						</div>
-						<div class="text-center">
-							<div class="text-3xl font-bold text-[#0b132b]">2026</div>
-							<div class="text-xs text-slate-500">Livraison estimée</div>
-						</div>
+						<p class="mt-3 text-xs text-slate-500">Donation sécurisée et instantanée</p>
 					</div>
 				</div>
-				<div class="card shadow-2xl p-8 radial-spot">
-					<div class="text-center">
-						<QrcodeVue value="https://votre-cagnotte.example" :size="220" level="H" class="mx-auto float-slow"/>
-						<div class="mt-6">
-							<a href="https://votre-cagnotte.example" target="_blank" class="btn-primary px-6 py-3 text-base">Scanner / Ouvrir la cagnotte</a>
+				<div class="card p-8">
+					<h3 class="text-lg font-semibold text-[#0b132b] mb-4">Rappels Spirituels</h3>
+					<div class="relative h-44">
+						<transition name="fade" mode="out-in">
+							<div :key="currentQuoteIndex" class="absolute inset-0 grid place-items-center text-center px-4">
+								<blockquote class="text-emerald-700 text-2xl font-semibold" dir="rtl" v-if="quotes[currentQuoteIndex].ar">{{ quotes[currentQuoteIndex].ar }}</blockquote>
+								<blockquote class="text-emerald-700 text-2xl font-semibold" v-else>{{ quotes[currentQuoteIndex].fr }}</blockquote>
+								<p class="mt-3 text-slate-600 max-w-md" v-if="quotes[currentQuoteIndex].fr">“{{ quotes[currentQuoteIndex].fr }}” — {{ quotes[currentQuoteIndex].ref }}</p>
+								<p class="mt-1 text-slate-500 text-sm" v-else>{{ quotes[currentQuoteIndex].ref }}</p>
+							</div>
+						</transition>
+						<div class="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-2 pb-1">
+							<span v-for="(_,i) in quotes" :key="i" class="size-2 rounded-full" :class="i===currentQuoteIndex ? 'bg-emerald-600' : 'bg-slate-300'"></span>
 						</div>
-						<p class="mt-3 text-xs text-slate-500">Sécurisé – Don défiscalisable</p>
 					</div>
 				</div>
 			</div>
@@ -122,4 +168,9 @@ import QrcodeVue from 'qrcode.vue'
 			</div>
 		</div>
 	</section>
-</template> 
+</template>
+
+<style scoped>
+.fade-enter-active,.fade-leave-active{ transition: opacity 500ms ease, transform 500ms ease; }
+.fade-enter-from,.fade-leave-to{ opacity: 0; transform: translateY(6px); }
+</style> 
