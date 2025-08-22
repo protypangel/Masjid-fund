@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import Logo from '../assets/Logo.svg'
-import Mail from '../assets/Mail.svg'
-import Phone from '../assets/Phone.svg'
-import AnimationText from './animation-text.vue'
+import Logo from '@/assets/Logo.svg'
+import Mail from '@/assets/Mail.svg'
+import Phone from '@/assets/Phone.svg'
+import AnimationText from '@/components/animations/TextSwapColor.vue'
 import { computed } from 'vue'
-import type { Header as HeaderType } from './interfaces/Header'
+import type HeaderType from '@/interfaces/layouts/Header'
 
 const props = defineProps<HeaderType>();
 

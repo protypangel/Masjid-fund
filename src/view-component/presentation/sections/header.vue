@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import QrcodeVue from 'qrcode.vue'
-import Title from '../../../components/title.vue'
-import ListStatCard from '../List-Stat-Card.vue'
+import Title from '../Title.vue'
+import ListStatCard from '../ListStatCard.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Logo from '../../../assets/logo.svg';
 

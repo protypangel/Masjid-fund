@@ -28,7 +28,7 @@ onMounted(() => {
   </div>
 </template>
 <style lang="css">
-@import "../main.css";
+@import "@/main.css";
 
 .animate-gradient-x:hover {
   animation: gradient-x var(--duration,3s) ease infinite;
