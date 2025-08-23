@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import StartWithAnimation from './components/animations/BeforeStartScreen.vue'
-
+import { ref } from 'vue'
+import StartPage from './components/animations/StartPage.vue'
+import SpecialRouterView from './components/animations/SpecialRouterView.vue'
+import Logo from '@/assets/logo.svg'
 
 import Header from '@/components/layouts/Header.vue'
 import Footer from '@/components/layouts/Footer.vue'
 
-import type { Header as HeaderType } from './components/interfaces/Header'
+import type HeaderType from '@/interfaces/layouts/Header'
 
-const route = useRoute()
+const path = ref<string>('')
 
 const header: HeaderType = {
-	isActive: (path: string) => route.path === path,
+	isActive: (_path: string) => path.value === _path,
 	phone: '+33 1 43 91 06 92',
 	email: 'vitry-sur-seine.nour-essalam@al-muminune.org',
 	navItems: [
@@ -19,15 +20,26 @@ const header: HeaderType = {
 	]
 }
 
-
+const handlePathChange = (_path: string) => {
+	path.value = _path
+}
 </script>
 
 <template>
-	<div class="min-h-screen w-full grid grid-rows-[auto_1fr_auto] flex-col">
-		<Header v-bind="header"/>
-		<StartWithAnimation>
-			<router-view/>
-		</StartWithAnimation>
-		<Footer/>
-	</div>
+  <div class="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+    <Header v-bind="header"/>
+    <StartPage disabled>
+      <template #start>
+        <Logo width="300" height="300"/>
+      </template>
+
+      <template #end>
+        <div class="relative h-full min-h-0">
+					<SpecialRouterView @path-change="handlePathChange"/>
+        </div>
+      </template>
+    </StartPage>
+
+    <Footer/>
+  </div>
 </template>

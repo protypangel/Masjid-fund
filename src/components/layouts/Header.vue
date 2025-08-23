@@ -4,7 +4,7 @@ import Mail from '@/assets/Mail.svg'
 import Phone from '@/assets/Phone.svg'
 import AnimationText from '@/components/animations/TextSwapColor.vue'
 import { computed } from 'vue'
-import type HeaderType from '@/interfaces/layouts/Header'
+import type HeaderType from '../../interfaces/layouts/Header'
 
 const props = defineProps<HeaderType>();
 
@@ -28,7 +28,7 @@ const hrefList = computed(() => {
       class="flex gap-4 items-center">
         <Logo class="w-8 h-auto"/>
         <div :class="colorFromActive('/')">
-            <AnimationText :duration="2" class="text-base font-bold">Nour Essalam</AnimationText>
+            <AnimationText :duration="2" class="font-bold">Nour Essalam</AnimationText>
         </div>
       </RouterLink>
       <div class="flex gap-4 items-center">

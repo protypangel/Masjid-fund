@@ -6,8 +6,8 @@ const RecapPage = () => import('./views/RecapPage.vue')
 export const router = createRouter({
 	history: createWebHistory(),
 	routes: [
-		{ path: '/', name: 'home', component: PresentationPage },
-		{ path: '/recap', name: 'recap', component: RecapPage },
+		{ path: '/', name: 'home', component: PresentationPage, meta: { index: 0} },
+		{ path: '/recap', name: 'recap', component: RecapPage, meta: { index: 1} },
 	],
 	scrollBehavior() {
 		return { top: 0 }

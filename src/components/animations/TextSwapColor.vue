@@ -1,27 +1,28 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const props = defineProps<{ duration?: number }>()
 const duration = `${props.duration ?? 3}s`
 
 const parent = ref<HTMLElement | null>(null)
-const parentBg = ref('')
-
-onMounted(() => {
+const parentBg = computed(() => {
   if (parent.value) {
     const cs = getComputedStyle(parent.value) as any
-    parentBg.value = cs.color || 'yellow'
+    return cs.color || 'transparent'
   }
+  return 'transparent'
 })
-</script>
 
+</script>
+<!-- text-gradient animate-gradient-x -->
 <template>
-  <div ref="parent"  data-component="animation-text">
+  <div ref="parent" data-component="animation-text">
     <div :style="{'--parent-color': parentBg}">
       <div
-        class="text-gradient animate-gradient-x"
+        class=""
         :style="{'--duration': duration}"
       >
+      {{ parentBg }}
         <slot />
       </div>
     </div>
