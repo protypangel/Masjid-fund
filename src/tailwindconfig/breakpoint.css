@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+
+/*
+	width > 1280px : Screen
+	width > 1024px : Laptop
+	width > 768px : Tablet
+	width > 480px : Phone
+	width < 320px : Small Phone
+*/
+
+@custom-media --screen (min-width: 1280px);
+@custom-media --laptop (min-width: 1024px);
+@custom-media --tablet (min-width: 768px);
+@custom-media --phone (min-width: 480px);
+@custom-media --small-phone (min-width: 320px);
+
+@theme {
+  --breakpoint-screen: 1280px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-phone: 480px;
+  --breakpoint-small-phone: 320px;
+}

@@ -26,8 +26,6 @@ function getColor(style: CSSStyleDeclaration | undefined) {
 </template>
 
 <style>
-@import "@/main.css";
-
 /* garde l'anim telle quelle */
 .animate-gradient-x {
   animation: gradient-x var(--duration) ease infinite;

@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "./color.css";
+@import "./font-size.css";
+@import "./breakpoint.css";
 
 @layer base {
 	html, body, #app { height: 100%; }
@@ -33,34 +36,4 @@
 	.progress-ring { --p: 0; background:
 		conic-gradient(#10b981 calc(var(--p)*1%), #e5e7eb 0);
 	}
-
 } 
-@theme {
-	--color-primary: hsl(158, 64%, 35%);
-	--color-primary-foreground: hsl(0, 0%, 100%);
-	--color-primary-light: hsl(158, 47%, 92%);
-	--color-secondary: hsl(45, 86%, 58%);
-	--color-secondary-foreground: hsl(222, 30%, 15%);
-	--color-secondary-light: hsl(54, 84%, 95%);
-	--color-accent: hsl(220, 45%, 25%);
-	--color-accent-foreground: hsl(0, 0%, 100%);
-	--color-accent-light: hsl(227, 63%, 96%);
-	--color-background: hsl(60, 20%, 99%);
-	--color-foreground: hsl(222, 30%, 15%);
-	--color-muted: hsl(220, 15%, 96%);
-	--color-muted-foreground: hsl(221, 15%, 45%);
-	--color-border: hsl(223, 14%, 90%);
-	--color-destructive: hsl(0, 75%, 55%);
-	--color-destructive-foreground: hsl(0, 0%, 100%);
-	--color-input: hsl(216, 16%, 94%);
-	--color-slider-background: hsl(0, 0%, 98%);
-	--color-header: hsl(60, 20%, 99%);
-}
-@theme {
-	--text-xs: 14px;
-	--text-sm: 16px;
-	--text-base: 18px;
-	--text-lg: 24px;
-	--text-xl: 32px;
-	--text-2xl: 60px;
-}

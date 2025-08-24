@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@import "./breakpoint.css";
+
+/* todo : change font size for each breakpoint */
+
+:root {
+  --text-xs: 14px;
+  --text-sm: 16px;
+  --text-base: 18px;
+  --text-lg: 24px;
+  --text-xl: 32px;
+  --text-2xl: 60px;
+}
+
+@media (--phone) {
+  :root {
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 24px;
+    --text-xl: 32px;
+    --text-2xl: 60px;
+  }
+}
+
+@media (--tablet) {
+  :root {
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 24px;
+    --text-xl: 32px;
+    --text-2xl: 60px;
+  }
+}
+
+@media (--laptop) {
+  :root {
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 24px;
+    --text-xl: 32px;
+    --text-2xl: 60px;
+  }
+}
+
+@media (--screen) {
+  :root {
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 24px;
+    --text-xl: 32px;
+    --text-2xl: 60px;
+  }
+}
