@@ -29,11 +29,16 @@ emit('path-change', route.path)
 <template>
   <RouterView v-slot="{ Component, route }">
     <Transition :name="direction" mode="out-in">
-      <component :is="Component" :key="route.fullPath" class="block h-full" />
+      <component :is="Component" class="direction-wrapper h-full overflow-auto" :key="route.fullPath" />
     </Transition>
   </RouterView>
 </template> 
 <style scoped>
+.slide-right-leave-to.direction-wrapper,
+.slide-left-leave-to.direction-wrapper {
+  overflow: hidden !important;
+}
+
 .slide-right-enter-active,
 .slide-right-leave-active {
   transition: all 0.5s ease-in-out;
