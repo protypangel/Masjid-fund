@@ -9,7 +9,6 @@ const props = withDefaults(
 const duration = computed(() => `${props.duration}s`)
 
 function getColor(style: CSSStyleDeclaration | undefined) {
-  console.log(style?.color)
   return style?.color ?? 'transparent'
 }
 
