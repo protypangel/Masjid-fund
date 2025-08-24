@@ -49,7 +49,7 @@ const hrefList = computed(() => {
           :key="index"
           ref="`${item[0]}:${item[1]}`"
           class="group inline-flex items-center gap-2 text-accent cursor-pointer hover:text-primary">
-            <component :is="item[2]" :width="16" class="fill-current" />
+            <component :is="item[2]" :width="16" />
             <AnimationText :duration="2" class="font-semibold">{{ item[1] }}</AnimationText>
           </a>
         </div>

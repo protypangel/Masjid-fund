@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useSlots, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = withDefaults(defineProps<{
   upSizeOnHover?: boolean,
@@ -12,10 +12,6 @@ const props = withDefaults(defineProps<{
 })
 
 const hover = ref(false)
-const slots = useSlots()
-
-const hasContainerHover = computed(() => !!slots['container-hover'])
-const hasSubtitleHover  = computed(() => !!slots['subtitle-hover'])
 
 const paddingAnimation = computed(() => props.upSizeOnHover ? 'hover:p-0' : '')
 const borderAnimation = computed(() => `hover:border-[${props.borderColor}] hover:border-[${props.borderWidth}px]`)
@@ -79,7 +75,7 @@ Exemple d'utilisation avec :
         <div class="text-xl font-bold">
           <Transition name="slide" mode="out-in">
             <div class="block w-full">
-              <slot name="container-hover" v-if="hover && hasContainerHover" />
+              <slot name="container-hover" v-if="hover && $slots['container-hover']" />
               <slot name="container" v-else />
             </div>
           </Transition>
@@ -88,7 +84,7 @@ Exemple d'utilisation avec :
         <div class="text-xs text-accent font-bold">
           <Transition name="slide" mode="out-in">
             <div class="block w-full">
-              <slot name="subtitle-hover" v-if="hover && hasSubtitleHover" />
+              <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
               <slot name="subtitle" v-else />
             </div>  
           </Transition>

@@ -1,42 +1,29 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed } from 'vue'
+import ColorEffect from '@/components/effect/CSSStyleDeclarationFromParent.vue'
 
 const props = withDefaults(
-  defineProps<{ duration?: number, class?: string }>(), 
-  { duration: 1, class: '' }
+  defineProps<{ duration?: number}>(), 
+  { duration: 1}
 )
 const duration = computed(() => `${props.duration}s`)
-const root = ref<HTMLElement|null>(null)
 
-function tick() {
-  const host = root.value!
-  const target = host.parentElement ?? host
-  const rgb = getComputedStyle(target).color as string
-  host.style.setProperty('--c', rgb)
-  console.log(rgb)
+function getColor(style: CSSStyleDeclaration | undefined) {
+  console.log(style?.color)
+  return style?.color ?? 'transparent'
 }
 
-watch(() => props.class, () => {
-  nextTick().then(tick)
-})
-
-onMounted(() => {
-  nextTick().then(tick)
-})
 </script>
 
 <template>
-  <div :class="class">
+  <ColorEffect v-slot="{ style }">
     <div
-      ref="root"
-      class="bg-clip-text hover:text-transparent group-hover:text-transparent
-            bg-gradient-to-r from-primary via-secondary to-[var(--c)]
-            animate-gradient-x"
-      :style="{ '--duration': duration }"
-    >
+    ref="root"
+    class="bg-clip-text hover:text-transparent group-hover:text-transparent bg-gradient-to-r from-primary via-secondary animate-gradient-x"
+    :style="{ '--duration': duration, '--tw-gradient-to': getColor(style) }">
       <slot />
     </div>
-  </div>
+  </ColorEffect>
 </template>
 
 <style>
