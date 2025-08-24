@@ -1,20 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-
-const props = withDefaults(defineProps<{
-  upSizeOnHover?: boolean,
-  borderColor?: string,
-  borderWidth?: number,
-}>(), {
-  upSizeOnHover: false,
-  borderColor: 'currentColor',
-  borderWidth: 2
-})
+import CSSStyleDeclarationFromParent from '@/components/effect/CSSStyleDeclarationFromParent.vue'
 
 const hover = ref(false)
 
-const paddingAnimation = computed(() => props.upSizeOnHover ? 'hover:p-0' : '')
-const borderAnimation = computed(() => `hover:border-[${props.borderColor}] hover:border-[${props.borderWidth}px]`)
 </script>
 
 <!--
@@ -53,20 +42,24 @@ Exemple d'utilisation avec :
 </StatCard>
 -->
 <template>
+  <CSSStyleDeclarationFromParent v-slot="{ style }">
   <div
     :class="[
-      'h-[150px] p-2 hover:p-0',
+      'group h-[150px] p-2 cursor-default select-none',
       'transition-[padding,border-width,border-color] duration-300 ease-in-out',
-      paddingAnimation
+      'hover:p-0'
     ]"
     @mouseenter="hover = true"
     @mouseleave="hover = false"
   >
-  {{ props.borderColor }}
-    <div :class="[
-      'relative h-full rounded-xl bg-background border border-border shadow-soft px-9 flex flex-col gap-3 justify-center',
-      borderAnimation
-    ]">
+    <div 
+    :class="[
+      'relative h-full rounded-xl bg-background border-solid border-border border-1 shadow-soft px-9 flex flex-col gap-3 justify-center',
+      'group-hover:border-[3px]',
+      `group-hover:border-[var(--border-color-hover)]`
+    ]"
+    :style="{ '--border-color-hover': style?.color }"
+    >
       <div class="text-xs text-accent font-bold">
         <slot name="title" />
       </div>
@@ -89,9 +82,10 @@ Exemple d'utilisation avec :
             </div>  
           </Transition>
         </div>
+        </div>
       </div>
     </div>
-  </div>
+  </CSSStyleDeclarationFromParent>
 </template>
 
 <style scoped>
