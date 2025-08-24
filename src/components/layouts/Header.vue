@@ -3,14 +3,14 @@ import Logo from '@/assets/Logo.svg'
 import Mail from '@/assets/Mail.svg'
 import Phone from '@/assets/Phone.svg'
 import AnimationText from '@/components/animations/TextSwapColor.vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type HeaderType from '../../interfaces/layouts/Header'
 
 const props = defineProps<HeaderType>();
 
-function colorFromActive(path: string): string {
+const colorFromActive = ref(function (path: string): string {
   return props.isActive(path) ? 'text-primary' : 'text-foreground'
-}
+})
 
 const hrefList = computed(() => {
   return [
@@ -23,13 +23,11 @@ const hrefList = computed(() => {
 <template>
   <header class="w-full inset-0 bg-header shadow-soft border-b border-border">
     <div class="mx-auto max-w-7xl w-full px-8 py-4 flex justify-between">
-      <RouterLink 
+      <RouterLink
       to="/"
       class="flex gap-4 items-center">
         <Logo class="w-8 h-auto"/>
-        <div :class="colorFromActive('/')">
-            <AnimationText :duration="2" class="font-bold">Nour Essalam</AnimationText>
-        </div>
+        <AnimationText :duration="2" class="font-bold" :class="colorFromActive('/')">Nour Essalam</AnimationText>
       </RouterLink>
       <div class="flex gap-4 items-center">
         <div class="flex gap-4 items-center">
@@ -50,14 +48,9 @@ const hrefList = computed(() => {
           v-for="(item, index) in hrefList"
           :key="index"
           ref="`${item[0]}:${item[1]}`"
-          class="inline-flex items-center gap-2 text-accent hover:text-primary cursor-pointer"
-          >
-          <component :is="item[2]" :width="16" class="" />
-            <AnimationText :duration="2">
-              <div class="flex gap-2 items-center">
-                <p class="font-semibold">{{ item[1] }}</p>
-              </div>
-            </AnimationText>
+          class="group inline-flex items-center gap-2 text-accent cursor-pointer hover:text-primary">
+            <component :is="item[2]" :width="16" class="fill-current" />
+            <AnimationText :duration="2" class="font-semibold">{{ item[1] }}</AnimationText>
           </a>
         </div>
       </div>
