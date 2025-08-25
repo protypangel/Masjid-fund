@@ -4,33 +4,34 @@
 /* todo : change font size for each breakpoint */
 
 :root {
-  --text-xs: 14px;
-  --text-sm: 16px;
-  --text-base: 18px;
-  --text-lg: 24px;
-  --text-xl: 32px;
-  --text-2xl: 60px;
+  --text-xs: 12px;   /* très petit texte d’appoint (labels, badges) */
+  --text-sm: 14px;   /* petit texte secondaire */
+  --text-base: 16px; /* texte par défaut, confortable */
+  --text-lg: 18px;   /* sous-titres */
+  --text-xl: 20px;   /* titres de section */
+  --text-2xl: 24px;  /* gros titre */
 }
+
 
 @media (--phone) {
   :root {
-    --text-xs: 14px;
-    --text-sm: 16px;
-    --text-base: 18px;
-    --text-lg: 24px;
-    --text-xl: 32px;
-    --text-2xl: 60px;
-  }
+    --text-xs: 12px;  /* très petit texte (badges, labels discrets) */
+    --text-sm: 14px;  /* infos secondaires */
+    --text-base: 16px; /* texte principal (paragraphe) */
+    --text-lg: 18px;  /* sous-titres */
+    --text-xl: 20px;  /* titres */
+    --text-2xl: 24px; /* gros titres */
+  }  
 }
 
 @media (--tablet) {
   :root {
-    --text-xs: 14px;
-    --text-sm: 16px;
-    --text-base: 18px;
-    --text-lg: 24px;
-    --text-xl: 32px;
-    --text-2xl: 60px;
+    --text-xs: 13px;  /* petits labels, encore lisibles */
+    --text-sm: 15px;  /* infos secondaires */
+    --text-base: 17px; /* texte principal */
+    --text-lg: 19px;  /* sous-titres */
+    --text-xl: 22px;  /* titres */
+    --text-2xl: 28px; /* gros titres */
   }
 }
 
@@ -39,9 +40,9 @@
     --text-xs: 14px;
     --text-sm: 16px;
     --text-base: 18px;
-    --text-lg: 24px;
-    --text-xl: 32px;
-    --text-2xl: 60px;
+    --text-lg: 20px;
+    --text-xl: 24px;
+    --text-2xl: 32px;
   }
 }
 

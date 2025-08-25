@@ -12,13 +12,13 @@
 @custom-media --screen (min-width: 1280px);
 @custom-media --laptop (min-width: 1024px);
 @custom-media --tablet (min-width: 768px);
-@custom-media --phone (min-width: 480px);
-@custom-media --small-phone (min-width: 320px);
+@custom-media --phone (min-width: 425px);
+@custom-media --small-phone (min-width: 375px);
 
 @theme {
   --breakpoint-screen: 1280px;
   --breakpoint-laptop: 1024px;
   --breakpoint-tablet: 768px;
-  --breakpoint-phone: 480px;
+  --breakpoint-phone: 425px;
   --breakpoint-small-phone: 320px;
 }

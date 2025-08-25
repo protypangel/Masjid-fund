@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -16,14 +16,7 @@ const load = ref(function (newIndex: unknown) {
 })
 watch(() => route.meta.index, (newIndex) => {
   load.value(newIndex);
-  emit('path-change', route.path)
 })
-
-const emit = defineEmits<{
-	(e: 'path-change', path: string): void
-}>()
-
-emit('path-change', route.path)
 
 </script>
 <template>

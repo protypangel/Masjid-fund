@@ -1,5 +1,4 @@
 export default interface Header {
-  isActive: (path: string) => boolean,
   phone: string,
   email: string,
   navItems: {

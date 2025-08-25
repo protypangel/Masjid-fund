@@ -12,7 +12,6 @@ import type HeaderType from '@/interfaces/layouts/Header'
 const path = ref<string>('')
 
 const header: HeaderType = {
-	isActive: (_path: string) => path.value === _path,
 	phone: '+33 1 43 91 06 92',
 	email: 'vitry-sur-seine.nour-essalam@al-muminune.org',
 	navItems: [
@@ -20,26 +19,24 @@ const header: HeaderType = {
 	]
 }
 
-const handlePathChange = (_path: string) => {
-	path.value = _path
-}
 </script>
 
 <template>
   <div class="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
     <Header v-bind="header"/>
-    <StartPage disabled>
+    <!-- <StartPage disabled>
       <template #start>
         <Logo width="300" height="300"/>
       </template>
 
       <template #end>
         <div class="relative h-full min-h-0">
-					<SpecialRouterView @path-change="handlePathChange"/>
+					<SpecialRouterView />
         </div>
       </template>
     </StartPage>
 
+    -->
     <Footer/>
   </div>
 </template>
