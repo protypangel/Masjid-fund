@@ -27,7 +27,7 @@ const hrefList = computed(() => {
       to="/"
       class="flex gap-4 items-center">
         <Logo class="w-8 h-auto"/>
-        <AnimationText :duration="2" class="font-bold" :class="colorFromActive('/')">Nour Essalam</AnimationText>
+        <AnimationText :duration="2" class="font-bold text-lg" :class="colorFromActive('/')">Nour Essalam</AnimationText>
       </RouterLink>
       <div class="flex gap-4 items-center">
         <div class="flex gap-4 items-center">
@@ -37,9 +37,7 @@ const hrefList = computed(() => {
             :to="item.path"
             class="text-sm font-medium hover:text-primary"
             :class="colorFromActive(item.path)">
-              <span class="text-sm">
                 {{ item.label }}
-              </span>
           </RouterLink>
         </div>
         <div class="h-8 w-px bg-border"></div>

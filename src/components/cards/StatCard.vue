@@ -43,69 +43,35 @@ Exemple d'utilisation avec :
 -->
 <template>
   <CSSStyleDeclarationFromParent v-slot="{ style }">
-  <div
+    <div
     :class="[
       'group h-[150px] p-2 cursor-default select-none',
       'transition-[padding,border-width,border-color] duration-300 ease-in-out',
       'hover:p-0'
     ]"
     @mouseenter="hover = true"
-    @mouseleave="hover = false"
-  >
-    <div 
-    :class="[
-      'relative h-full rounded-xl bg-background border-solid border-border border-1 shadow-soft px-9 flex flex-col gap-3 justify-center',
-      'group-hover:border-[3px]',
-      `group-hover:border-[var(--border-color-hover)]`
-    ]"
-    :style="{ '--border-color-hover': style?.color }"
-    >
-      <div class="text-xs text-accent font-bold">
-        <slot name="title" />
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <div class="text-xl font-bold">
-          <Transition name="slide" mode="out-in">
-            <div class="block w-full">
-              <slot name="container-hover" v-if="hover && $slots['container-hover']" />
-              <slot name="container" v-else />
-            </div>
-          </Transition>
+    @mouseleave="hover = false">
+      <div 
+      :class="[
+        'relative h-full rounded-xl bg-background border-solid border-border border-1 shadow-soft px-9 flex flex-col gap-3 justify-center',
+        'group-hover:border-[3px]',
+        `group-hover:border-[var(--border-color-hover)]`
+      ]"
+      :style="{ '--border-color-hover': style?.color }">
+        <div class="w-full text-xs text-accent font-bold">
+          <slot name="title" />
         </div>
-
-        <div class="text-xs text-accent font-bold">
-          <Transition name="slide" mode="out-in">
-            <div class="block w-full">
-              <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
-              <slot name="subtitle" v-else />
-            </div>  
-          </Transition>
+        <div class="flex flex-col gap-1">
+          <div class="w-full text-xl font-bold">
+            <slot name="container-hover" v-if="hover && $slots['container-hover']" />
+            <slot name="container" v-else />
+          </div>
+          <div class="w-full text-xs text-accent font-bold">
+            <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
+            <slot name="subtitle" v-else />
+          </div>  
+          </div>
         </div>
-        </div>
-      </div>
     </div>
   </CSSStyleDeclarationFromParent>
 </template>
-
-<style scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity .3s ease, transform .3s ease;
-}
-.slide-enter-from {
-  opacity: 0;
-  transform: translateX(-100px); /* arrive de gauche */
-}
-.slide-enter-to {
-  opacity: 1;
-  transform: translateX(0);
-}
-.slide-leave-from {
-  opacity: 1;
-  transform: translateX(0);
-}
-.slide-leave-to {
-  transform: translateX(100px);  /* part à droite */
-}
-</style>
