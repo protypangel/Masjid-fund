@@ -18,12 +18,12 @@ function getColor(style: CSSStyleDeclaration) {
 
 const hover = ref(false);
 
+const paddingDefault = props.disabled ? '' : 'p-2';
+const paddingHover = props.disabled ? '' : 'p-0';
 
-const paddingHover = computed(() => {
-  return props.disabled ? '' : 'hover:p-0';
-});
 const defaultBorderWidth = 'border-2';
-const borderWidthHover = 'group-hover:border-4'
+const borderWidthHover = 'border-4'
+
 
 </script>
 <template>
@@ -31,23 +31,23 @@ const borderWidthHover = 'group-hover:border-4'
     <div
     :class="[
       'group',
-      'transition-[padding,border-width,border-color] duration-300 ease-in-out h-full w-full'
+      'h-full w-full',
+      paddingDefault,
+      `hover:${paddingHover}`
     ]"
     @mouseenter="hover = true"
     @mouseleave="hover = false">
-      <div 
-      class="h-full w-full p-2"
-      :class="paddingHover">
-        <div :class="[
+    <div :class="[
           'rounded-xl bg-background border-border shadow-soft h-full w-full',
           defaultBorderWidth,
           borderWidthHover,
-          `group-hover:border-[var(--border-color-hover)]`
+          `group-hover:border-[var(--border-color-hover)]`,
+          paddingHover,
+          `group-hover:${paddingDefault}`
         ]"
         :style="{ '--border-color-hover': getColor(style) }">
           <slot :style="style" :hover="hover" />
         </div>
-      </div>
     </div>
   </CSSStyleDeclarationFromParent>
 </template>

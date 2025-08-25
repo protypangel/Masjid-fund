@@ -26,9 +26,8 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
 
 <template>
   <section class="h-full relative overflow-hidden">
-    <div class="absolute inset-0 pattern-grid opacity-40 pointer-events-none"></div>
-    
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12 h-full flex flex-col justify-between">
+    <div class="absolute inset-0 -z-99 pattern-grid opacity-60 pointer-events-none"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12 h-full flex flex-col justify-between">
       <Title>
         <template #title>
           <span class="text-secondary">نور السلام</span> <span class="text-accent">–</span> Construisons notre mosquée
@@ -37,14 +36,14 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
           Merci pour votre générosité et votre soutien à cette noble cause
         </template>
       </Title>
-
+      
       <ListStatCard />
-
+      
       <div class="flex items-center justify-around">
         <QrCode />
         <QrCode />
       </div>
-
+      
       <!-- <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
         <div class="card shadow-2xl p-8 radial-spot">
           <h3 class="text-lg font-semibold text-[#0b132b] mb-4 flex items-center gap-2"><span class="text-[#0d6b4d]">▦</span> Participer à la collecte</h3>

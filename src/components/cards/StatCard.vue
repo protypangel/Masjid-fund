@@ -50,7 +50,7 @@ Exemple d'utilisation avec :
   <CSSStyleDeclarationFromParent :class="$props.class">
     <HighlightCard class="cursor-default select-none h-full w-full">
       <template #default="{ hover }">
-        <div class="relative px-9 flex flex-col gap-3 justify-center h-full w-full">
+        <div class="relative pl-9 flex flex-col gap-3 justify-center h-full w-full">
           <div class="w-full text-xs text-accent font-extrabold">
             <slot name="title" />
           </div>
