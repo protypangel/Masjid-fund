@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import CSSStyleDeclarationFromParent from '@/components/effect/CSSStyleDeclarationFromParent.vue'
 
-const hover = ref(false)
+import CSSStyleDeclarationFromParent from '@/components/effect/CSSStyleDeclarationFromParent.vue'
+import HighlightCard from '@/components/animations/HighlightCard.vue'
+
+withDefaults(defineProps<{
+  class?: string
+}>(), {
+  class: ''
+})
 
 </script>
 
@@ -42,36 +47,25 @@ Exemple d'utilisation avec :
 </StatCard>
 -->
 <template>
-  <CSSStyleDeclarationFromParent v-slot="{ style }">
-    <div
-    :class="[
-      'group h-[150px] p-2 cursor-default select-none',
-      'transition-[padding,border-width,border-color] duration-300 ease-in-out',
-      'hover:p-0'
-    ]"
-    @mouseenter="hover = true"
-    @mouseleave="hover = false">
-      <div 
-      :class="[
-        'relative h-full rounded-xl bg-background border-solid border-border border-1 shadow-soft px-9 flex flex-col gap-3 justify-center',
-        'group-hover:border-[3px]',
-        `group-hover:border-[var(--border-color-hover)]`
-      ]"
-      :style="{ '--border-color-hover': style?.color }">
-        <div class="w-full text-xs text-accent font-bold">
-          <slot name="title" />
-        </div>
-        <div class="flex flex-col gap-1">
-          <div class="w-full text-xl font-bold">
-            <slot name="container-hover" v-if="hover && $slots['container-hover']" />
-            <slot name="container" v-else />
+  <CSSStyleDeclarationFromParent :class="$props.class">
+    <HighlightCard class="cursor-default select-none h-full w-full">
+      <template #default="{ hover }">
+        <div class="relative px-9 flex flex-col gap-3 justify-center h-full w-full">
+          <div class="w-full text-xs text-accent font-extrabold">
+            <slot name="title" />
           </div>
-          <div class="w-full text-xs text-accent font-bold">
-            <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
-            <slot name="subtitle" v-else />
-          </div>  
+          <div class="flex flex-col gap-1">
+            <div class="w-full text-xl font-bold">
+              <slot name="container-hover" v-if="hover && $slots['container-hover']" />
+              <slot name="container" v-else />
+            </div>
+            <div class="w-full text-xs text-accent font-extrabold">
+              <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
+              <slot name="subtitle" v-else />
+            </div>  
           </div>
         </div>
-    </div>
+      </template>
+    </HighlightCard>
   </CSSStyleDeclarationFromParent>
 </template>
