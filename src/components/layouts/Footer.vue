@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
 type Phrase = { text: string; author: string; type: 'Sourate' | 'Hadith' }
 
@@ -14,12 +14,47 @@ const phrases: Phrase[] = [
 const currentIndex = ref(0)
 let timer: number | undefined
 
-const current = computed(() => phrases[currentIndex.value])
+// refs pour le conteneur visible et le sizer caché
+const containerEl = ref<HTMLElement | null>(null)
+const sizerEl = ref<HTMLElement | null>(null)
+const measureEls = ref<HTMLElement[]>([])
+const containerH = ref<number>(0)
+
+function measureHeight(): void {
+  nextTick(() => {
+    // caler la largeur du sizer sur celle du conteneur (pour le même wrapping du texte)
+    const w = containerEl.value?.clientWidth ?? window.innerWidth
+    if (sizerEl.value) sizerEl.value.style.width = `${w}px`
+
+    let maxH = 0
+    for (const el of measureEls.value) {
+      if (el) maxH = Math.max(maxH, el.offsetHeight)
+    }
+    containerH.value = maxH
+  })
+}
 
 onMounted(() => {
+  // mesure initiale
+  measureHeight()
+
+  // re-mesurer si la police se charge plus tard
+  if ('fonts' in document) {
+    (document as any).fonts.ready.then(() => measureHeight())
+  }
+
+  // re-mesurer au resize
+  const onResize = () => measureHeight()
+  window.addEventListener('resize', onResize)
+
+  // auto-rotation
   timer = window.setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % phrases.length
-  }, 6_000)
+  }, 1_000)
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', onResize)
+  })
 })
 
 onBeforeUnmount(() => {
@@ -28,17 +63,41 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <footer class="border-t border-border py-8 bg-background">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative h-16">
+  <footer class="border-t border-border bg-background w-screen h-fit">
+    <div
+      ref="containerEl"
+      class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center overflow-hidden"
+      :style="{ height: containerH + 'px' }"
+    >
       <transition name="fade" mode="out-in">
         <div
           :key="currentIndex"
-          class="absolute inset-0 flex flex-col items-center justify-center"
+          class="absolute inset-0 px-4 tablet:px-8 laptop:px-12 flex flex-col items-center justify-center"
         >
-          <div class="text-base text-foreground font-bold">« {{ current.text }} »</div>
-          <div class="mt-2 font-semibold text-secondary">{{ current.type }} — {{ current.author }}</div>
+          <div class="text-base text-foreground font-bold">
+            « {{ phrases[currentIndex].text }} »
+          </div>
+          <div class="mt-2 font-semibold text-secondary">
+            {{ phrases[currentIndex].type }} — {{ phrases[currentIndex].author }}
+          </div>
         </div>
       </transition>
+
+      <div
+        ref="sizerEl"
+        class="invisible pointer-events-none absolute left-0 top-0"
+        aria-hidden="true"
+      >
+        <div
+          v-for="(p, i) in phrases"
+          :key="'measure-'+i"
+          :ref="el => (measureEls[i] = el as HTMLElement)"
+          class="px-4 tablet:px-8 laptop:px-12 py-6 tablet:py-8 laptop:py-12"
+        >
+          <div class="text-base font-bold">« {{ p.text }} »</div>
+          <div class="mt-2 font-semibold">{{ p.type }} — {{ p.author }}</div>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -46,7 +105,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.5s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
