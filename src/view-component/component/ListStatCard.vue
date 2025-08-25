@@ -3,8 +3,8 @@ import StatCard from '@/components/cards/StatCard.vue';
 import NumberTicker from '@/components/animations/NumberTicker.vue';
 </script>
 <template>
-  <div class="flex h-[150px]">
-    <StatCard class="flex-1 h-full text-primary">
+  <div class="flex h-[170px]">
+    <StatCard class="flex-1 text-primary">
       <template #title>Total collécté</template>
       <template #container>
         <div class="flex items-center gap-1">
@@ -21,7 +21,7 @@ import NumberTicker from '@/components/animations/NumberTicker.vue';
       <template #subtitle>+2.5% cette semaine</template>
       <template #subtitle-hover>collecté</template>
     </StatCard>
-    <StatCard class="flex-1 h-full text-secondary">
+    <StatCard class="flex-1 text-secondary">
       <template #title>Dernier Jumu'ah</template>
       <template #container>
         <div class="flex items-center gap-1">
@@ -37,7 +37,7 @@ import NumberTicker from '@/components/animations/NumberTicker.vue';
       </template>
       <template #subtitle>Vendredi dernier</template>
     </StatCard>
-    <StatCard class="flex-1 h-full text-accent">
+    <StatCard class="flex-1 text-accent">
       <template #title>Prochain Palier</template>
       <template #container>
         <div class="flex items-center gap-1">
@@ -54,7 +54,7 @@ import NumberTicker from '@/components/animations/NumberTicker.vue';
       <template #subtitle>Restants à collecter</template>
       <template #subtitle-hover>Pour la salle de prière</template>
     </StatCard>
-    <StatCard class="flex-1 h-full text-accent">
+    <StatCard class="flex-1 text-accent">
       <template #title>Objectif Global</template>
       <template #container>1 200 000 €</template>
       <template #container-hover>

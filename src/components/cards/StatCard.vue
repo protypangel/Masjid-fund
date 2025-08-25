@@ -48,18 +48,18 @@ Exemple d'utilisation avec :
 -->
 <template>
   <CSSStyleDeclarationFromParent :class="$props.class">
-    <HighlightCard class="cursor-default select-none h-full w-full">
+    <HighlightCard class="cursor-default select-none">
       <template #default="{ hover }">
-        <div class="relative pl-9 flex flex-col gap-3 justify-center h-full w-full">
-          <div class="w-full text-xs text-accent font-extrabold">
+        <div class="relative pl-9 py-6 flex flex-col gap-3 justify-center">
+          <div class="text-xs text-accent font-extrabold">
             <slot name="title" />
           </div>
           <div class="flex flex-col gap-1">
-            <div class="w-full text-xl font-bold">
+            <div class="text-xl font-bold">
               <slot name="container-hover" v-if="hover && $slots['container-hover']" />
               <slot name="container" v-else />
             </div>
-            <div class="w-full text-xs text-accent font-extrabold">
+            <div class="text-xs text-accent font-extrabold">
               <slot name="subtitle-hover" v-if="hover && $slots['subtitle-hover']" />
               <slot name="subtitle" v-else />
             </div>  

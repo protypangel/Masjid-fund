@@ -21,9 +21,8 @@ const hover = ref(false);
 const paddingDefault = props.disabled ? '' : 'p-2';
 const paddingHover = props.disabled ? '' : 'p-0';
 
-const defaultBorderWidth = 'border-2';
+const defaultBorderWidth = 'border-1';
 const borderWidthHover = 'border-4'
-
 
 </script>
 <template>
@@ -31,7 +30,7 @@ const borderWidthHover = 'border-4'
     <div
     :class="[
       'group',
-      'h-full w-full',
+      // 'transition-all duration-300 ease-in-out',
       paddingDefault,
       `hover:${paddingHover}`
     ]"
@@ -40,7 +39,7 @@ const borderWidthHover = 'border-4'
     <div :class="[
           'rounded-xl bg-background border-border shadow-soft h-full w-full',
           defaultBorderWidth,
-          borderWidthHover,
+          `group-hover:${borderWidthHover}`,
           `group-hover:border-[var(--border-color-hover)]`,
           paddingHover,
           `group-hover:${paddingDefault}`

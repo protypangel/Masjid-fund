@@ -4,7 +4,7 @@ import QrCodeIcon from '@/assets/QrCodeIcon.svg';
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex h-[453px]">
     <a 
     href="https://www.paypal.com/donate/?hosted_button_id=XYAD7VVFWRTLQ" 
     target="_blank">
