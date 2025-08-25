@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import QrcodeVue from 'qrcode.vue'
-import Title from '../Title.vue'
-import ListStatCard from '../ListStatCard.vue'
+import QrCode from '@/view-component/component/QrCode.vue'
+import Title from '@/view-component/component/Title.vue'
+import ListStatCard from '@/view-component/component/ListStatCard.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import Logo from '../../../assets/logo.svg';
+
 
 const quotes = [
 	{ ar: 'وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا', fr: 'Et quiconque lui fait don de la vie, c\'est comme s\'il faisait don de la vie à tous les hommes', ref: 'Coran 5:32' },
@@ -39,8 +39,13 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
       </Title>
 
       <ListStatCard />
-<!-- 
-      <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
+
+      <div class="flex items-center justify-around">
+        <QrCode />
+        <QrCode />
+      </div>
+
+      <!-- <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
         <div class="card shadow-2xl p-8 radial-spot">
           <h3 class="text-lg font-semibold text-[#0b132b] mb-4 flex items-center gap-2"><span class="text-[#0d6b4d]">▦</span> Participer à la collecte</h3>
           <div class="text-center">
@@ -74,7 +79,8 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
+    -->
     </div>
   </section>
 </template>
