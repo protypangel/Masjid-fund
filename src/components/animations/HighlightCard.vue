@@ -26,6 +26,7 @@ const borderWidthHover = 'border-4'
 
 </script>
 <template>
+  <!-- todo: the size is not fixed, need to fix it : maybe the border width is the issue -->
   <CSSStyleDeclarationFromParent v-slot="{ style }" :class="$props.class">
     <div
     :class="[

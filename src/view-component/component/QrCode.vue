@@ -4,6 +4,7 @@ import QrCodeIcon from '@/assets/QrCodeIcon.svg';
 </script>
 
 <template>
+  <!-- todo: remove the h-[453px] when the card is fixed -->
   <div class="flex h-[453px]">
     <a 
     href="https://www.paypal.com/donate/?hosted_button_id=XYAD7VVFWRTLQ" 

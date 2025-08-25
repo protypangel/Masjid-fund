@@ -3,6 +3,7 @@ import StatCard from '@/components/cards/StatCard.vue';
 import NumberTicker from '@/components/animations/NumberTicker.vue';
 </script>
 <template>
+  <!-- todo: remove the h-[170px] when the card is fixed -->
   <div class="flex h-[170px]">
     <StatCard class="flex-1 text-primary">
       <template #title>Total collécté</template>
