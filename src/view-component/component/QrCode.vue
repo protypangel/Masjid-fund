@@ -1,24 +1,31 @@
 <script setup lang="ts">
-import HighlightCard from '@/components/animations/HighlightCard.vue';
+import HighlightCard from '@/components/animation/HighlightCard.vue';
 import QrCodeIcon from '@/assets/QrCodeIcon.svg';
 </script>
 
 <template>
-  <!-- todo: remove the h-[453px] when the card is fixed -->
-  <div class="flex h-[453px]">
-    <a 
+  <div class="flex">
+    <a
     href="https://www.paypal.com/donate/?hosted_button_id=XYAD7VVFWRTLQ" 
     target="_blank">
-      <HighlightCard class=" text-primary">
-        <div class="flex items-center justify-center h-fit-content gap-10 flex-col px-15 py-10">
+      <HighlightCard class=" text-primary h-full">
+        <div 
+        class="
+          h-full
+          flex flex-col items-center justify-around
+          px-4 py-2
+        ">
           <div class="flex items-center justify-center h-fit-content gap-2">
-            <QrCodeIcon />
+            <QrCodeIcon class="w-5 tablet:w-7" />
             <span class="text-lg font-bold">Participer à la cagnotte</span>
           </div>
           <img src="@/assets/QRCodeLowDetail.png" class="test" :width="160"/>
-          <div class="flex items-center justify-center h-fit-content gap-2 flex-col">
-            <span class="text-lg font-bold">Scanner pour contribuer</span>
-            <span class="text-base text-muted-foreground font-bold">Donation sécurisée et instantanée</span>
+          <div class="flex items-center justify-center h-fit-content flex-col">
+            <span class="text-lg font-bold">
+              <span class="tablet:hidden">Cliquez ici pour contribuer</span>
+              <span class="hidden tablet:block">Cliquez ou scannez pour contribuer</span>
+            </span>
+            <span class="text-sm tablet:text-base text-muted-foreground font-bold">Donation sécurisée et instantanée</span>
           </div>
         </div>
       </HighlightCard>

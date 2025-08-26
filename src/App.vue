@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import StartPage from './components/animations/StartPage.vue'
-import SpecialRouterView from './components/animations/SpecialRouterView.vue'
+import StartPage from '@/components/animation/StartPage.vue'
+import SpecialRouterView from '@/components/animation/SpecialRouterView.vue'
 import Logo from '@/assets/logo.svg'
 
 import Header from '@/components/layouts/Header.vue'

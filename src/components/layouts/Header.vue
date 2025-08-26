@@ -2,10 +2,10 @@
 import Logo from '@/assets/Logo.svg'
 import Mail from '@/assets/Mail.svg'
 import Phone from '@/assets/Phone.svg'
-import AnimationText from '@/components/animations/TextSwapColor.vue'
+import AnimationText from '@/components/animation/TextSwapColor.vue'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import type HeaderType from '../../interfaces/layouts/Header'
+import type HeaderType from '@/interfaces/layouts/Header'
 
 const props = defineProps<HeaderType>();
 

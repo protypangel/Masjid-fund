@@ -13,6 +13,7 @@ import SectionMoreInfo from '../view-component/presentation/sections/MoreInfo.vu
 </template>
 <style scoped>
 .h-2screen {
-  height: fit-content;
+  height: 200%;
+	background-color: black;
 }
 </style>

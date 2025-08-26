@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import CSSStyleDeclarationFromParent from '@/components/effect/CSSStyleDeclarationFromParent.vue'
-import HighlightCard from '@/components/animations/HighlightCard.vue'
+import HighlightCard from '@/components/animation/HighlightCard.vue'
 
 withDefaults(defineProps<{
   class?: string

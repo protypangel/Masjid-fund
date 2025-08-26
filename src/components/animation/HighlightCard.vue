@@ -29,8 +29,8 @@ const borderWidthHover = 'border-4'
   <!-- todo: the size is not fixed, need to fix it : maybe the border width is the issue -->
   <CSSStyleDeclarationFromParent v-slot="{ style }" :class="$props.class">
     <div
+    class="group h-full"
     :class="[
-      'group',
       // 'transition-all duration-300 ease-in-out',
       paddingDefault,
       `hover:${paddingHover}`

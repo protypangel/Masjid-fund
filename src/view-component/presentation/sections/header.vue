@@ -2,6 +2,7 @@
 import QrCode from '@/view-component/component/QrCode.vue'
 import Title from '@/view-component/component/Title.vue'
 import ListStatCard from '@/view-component/component/ListStatCard.vue'
+import ShouldScrollIndicator from '@/components/indicator/ShouldScrollIndicator.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 
@@ -26,23 +27,44 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
 
 <template>
   <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-99 pattern-grid opacity-60 pointer-events-none"></div>
-    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12 h-full flex flex-col justify-between">
-      <Title>
-        <template #title>
-          <span class="text-secondary">نور السلام</span> <span class="text-accent">–</span> Construisons notre mosquée
-        </template>
-        <template #subtitle>
-          Merci pour votre générosité et votre soutien à cette noble cause
-        </template>
-      </Title>
-      
+    <div class="absolute inset-0 -z-99 pattern-grid opacity-60 pointer-events-none"/>
+    <!-- todo: it's not 200% height -->
+    <div
+      class="
+        relative h-full flex flex-col justify-between
+        px-4 gap-2
+      ">
+      <div class="bg-blue-500 h-1/2 w-full flex flex-col gap-2 items-center">
+        <!-- when it's phone the user see Title and QrCode in one line -->
+        <Title class="pt-4">
+          <template #title>
+            <span class="text-secondary">نور السلام</span> <span class="text-accent">–</span> Construisons notre mosquée
+          </template>
+          <template #subtitle>
+            <div class="hidden tablet:block">
+              Merci pour votre générosité et votre soutien à cette noble cause
+            </div>
+          </template>
+        </Title>
+        <div class="grow tablet:hidden flex flex-col items-center justify-center">
+          <QrCode class="h-[300px]"/>
+          <ShouldScrollIndicator 
+            :shouldScroll="true"
+            :scrollDirection="'down'"
+            />
+        </div>
+      </div>
+      <ListStatCard />
+    </div>
+        <!--      
+      </div>
+
       <ListStatCard />
       
-      <div class="flex items-center justify-around">
+      <div class="grid grid-cols-2 gap-2">
+        <QrCode class="hidden tablet:flex" />
         <QrCode />
-        <QrCode />
-      </div>
+      </div> -->
       
       <!-- <div class="mt-8 grid lg:grid-cols-2 gap-8 items-stretch">
         <div class="card shadow-2xl p-8 radial-spot">
@@ -80,6 +102,5 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
         </div>
       </div>
     -->
-    </div>
   </section>
 </template>

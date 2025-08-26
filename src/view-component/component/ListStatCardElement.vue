@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import StatCard from '@/components/cards/StatCard.vue';
-import NumberTicker from '@/components/animations/NumberTicker.vue';
+import StatCard from '@/components/card/StatCard.vue';
+import NumberTicker from '@/components/animation/NumberTicker.vue';
 import { StatCardAndClassProps } from '@/view-component/interfaces/ListStatCard';
 
 
