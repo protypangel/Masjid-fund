@@ -44,7 +44,7 @@ const hrefList = computed<Array<{
         <Logo class="w-5 tablet:w-8 h-auto"/>
         <AnimationText :duration="2" class="font-bold text-sm tablet:text-lg" :class="colorFromActive('/')">Nour Essalam</AnimationText>
       </RouterLink>
-      <div class="flex phone:gap-4 gap-2 items-center">
+      <div class="flex gap-4 items-center">
         <div class="flex gap-4 items-center">
           <RouterLink 
             v-for="(item, index) in navItems"
