@@ -50,7 +50,7 @@ onMounted(() => {
   // auto-rotation
   timer = window.setInterval(() => {
     currentIndex.value = (currentIndex.value + 1) % phrases.length
-  }, 1_000)
+  }, 7_000)
 
   onBeforeUnmount(() => {
     window.removeEventListener('resize', onResize)
