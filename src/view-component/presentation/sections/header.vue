@@ -25,7 +25,7 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
 </script>
 
 <template>
-  <section class="h-full relative overflow-hidden">
+  <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-99 pattern-grid opacity-60 pointer-events-none"></div>
     <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-10 lg:pt-14 lg:pb-12 h-full flex flex-col justify-between">
       <Title>
@@ -83,4 +83,3 @@ onBeforeUnmount(() => { if (intervalId) window.clearInterval(intervalId) })
     </div>
   </section>
 </template>
-  

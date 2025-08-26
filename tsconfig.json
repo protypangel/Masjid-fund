@@ -5,9 +5,13 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    
     "composite": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "strict": true,
     "baseUrl": ".",
     "paths": {
