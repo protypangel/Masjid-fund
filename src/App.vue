@@ -24,7 +24,7 @@ const header: HeaderType = {
 <template>
   <div class="min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
     <Header v-bind="header"/>
-    <StartPage disabled>
+    <StartPage>
       <template #start>
         <Logo width="300" height="300"/>
       </template>
