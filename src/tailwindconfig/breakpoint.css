@@ -16,9 +16,9 @@
 @custom-media --small-phone (min-width: 375px);
 
 /* breakpoint for height */
-@custom-media --hsm (min-height: 600px);
-@custom-media --hbase (min-height: 700px);
-
+@custom-media --hxs (max-height: 600px);
+@custom-media --hsm (max-height: 700px);
+@custom-media --hbase (min-height: 701px);
 
 @theme {
   --breakpoint-screen: 1280px;
