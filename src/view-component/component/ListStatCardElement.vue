@@ -4,7 +4,7 @@ import NumberTicker from '@/components/animation/NumberTicker.vue';
 import { StatCardAndClassProps } from '@/view-component/interfaces/ListStatCard';
 
 
-const props = withDefaults(defineProps<StatCardAndClassProps>(), {
+withDefaults(defineProps<StatCardAndClassProps>(), {
   class: '',
 });
 
@@ -14,13 +14,14 @@ const props = withDefaults(defineProps<StatCardAndClassProps>(), {
     <template #title>{{ title }}</template>
     <template #container>
       <div class="flex items-center gap-1">
-        <NumberTicker :target="container" />
+        <NumberTicker :target="container" :decimals="decimals" />
         <span>{{ unit }}</span>
       </div>
     </template>
     <template #container-hover v-if="containerHover">
       <div class="flex items-center gap-1">
-        <NumberTicker :target="containerHover" :duration="250" />
+        <span>{{ beforeContainer }}</span>
+        <NumberTicker :target="containerHover" :duration="250" :decimals="decimalsHover" />
         <span>{{ unitHover }}</span>
       </div>
     </template>

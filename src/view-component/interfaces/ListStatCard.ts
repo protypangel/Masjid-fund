@@ -2,9 +2,14 @@ export interface StatCardProps {
   title: string;
   subtitle: string;
   subtitleHover?: string;
+  beforeContainer?: string;
   container: number;
-  containerHover?: number;
+  decimals?: number;
   unit: string;
+
+  beforeContainerHover?: string;
+  containerHover?: number;
+  decimalsHover?: number;
   unitHover?: string;
 }
 
