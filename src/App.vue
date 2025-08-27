@@ -6,9 +6,10 @@ import Logo from '@/assets/logo.svg'
 
 import Header from '@/components/layouts/Header.vue'
 import Footer from '@/components/layouts/Footer.vue'
-import { Phrase } from '@/interfaces/layouts/Footer'
 
 import type HeaderType from '@/interfaces/layouts/Header'
+
+const path = ref<string>('')
 
 const header: HeaderType = {
 	phone: '+33 1 43 91 06 92',
@@ -17,14 +18,6 @@ const header: HeaderType = {
 		{ label: 'Suivi', path: '/recap' }
 	]
 }
-
-const phrases: Phrase[] = [
-  { text: 'Quiconque construit une mosquée pour Allah, Allah lui construit son équivalent au Paradis', author: 'Sahîh al-Bukhari', type: 'Hadith' },
-  { text: "Et quiconque lui fait don de la vie, c'est comme s'il faisait don de la vie à tous les hommes", author: 'La table servie, verset 32', type: 'Sourate' },
-  { text: "La sadaqa éteint les péchés comme l'eau éteint le feu", author: 'Tirmidhi', type: 'Hadith' },
-  { text: "Et tout ce que vous dépensez de bien, c'est pour vous-mêmes", author: 'Al-Baqara, verset 272', type: 'Sourate' },
-  { text: "Jamais l'aumône n'a diminué une fortune", author: 'Sahîh Muslim', type: 'Hadith' }
-]
 
 </script>
 
@@ -42,6 +35,6 @@ const phrases: Phrase[] = [
         </div>
       </template>
     </StartPage>   
-    <Footer :phrases="phrases"/>
+    <Footer/>
   </div>
 </template>
