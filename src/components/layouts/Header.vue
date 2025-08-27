@@ -11,7 +11,6 @@ const props = defineProps<HeaderType>();
 
 const route = useRoute()
 
-
 const colorFromActive = ref(function (path: string): string {
   return route.path === path ? 'text-primary' : 'text-foreground'
 })
@@ -34,8 +33,15 @@ const hrefList = computed<Array<{
 ]})
 
 </script>
+<!-- todo: when the user two tape in phone the Header should be fixed and not zoomed -->
 <template>
-  <header class="flex w-screen inset-0 bg-header shadow-soft border-b border-border justify-center">
+  <header 
+    class="
+      pointer-events-none
+      w-screen inset-0
+      flex justify-center
+      bg-header shadow-soft border-b border-border 
+    ">
     <!-- mx-auto max-w-none laptop:max-w-7xl w-full px-8 py-4 flex justify-between -->
     <div class="flex w-full laptop:max-w-7xl max-w-7xl px-8 py-4 justify-between">
       <RouterLink
