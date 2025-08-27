@@ -30,19 +30,12 @@ function scrollToListStatCard() {
           </div>
         </template>
       </Title>
-      <div class="grow flex flex-row gap-4 w-full ">
+      <div class="grow flex flex-row gap-4 w-full justify-center">
         <QrCode />
-        <Video
+        <Video 
           youtubeId="QLT7Je6up_w"
-        >
-      </Video>
-        <!-- <iframe 
-          src="https://www.youtube.com/embed/QLT7Je6up_w" 
-          title="Le Récap : La mosquée de Vitry, c&#39;est signé !" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen/> -->
+          class="hidden [@media(min-width:620px)]:block"
+        />
       </div>
       <ShouldScrollIndicator 
         :shouldScroll="true"
