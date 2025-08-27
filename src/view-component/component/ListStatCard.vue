@@ -18,44 +18,57 @@ const statCards: Record<StatCardType, StatCardProps> = {
   total: {
     title: 'Total collécté',
     container: 847500,
-    subtitle: '+2.5% cette semaine',
-    containerHover: 71,
-    subtitleHover: 'collecté',
+    decimals: 0,
     unit: '€',
+    subtitle: '+2.5% cette semaine',
+
+    containerHover: 71,
+    decimalsHover: 2,
+    subtitleHover: 'collecté',
     unitHover: '%',
   },
   "last Jumu'ah": {
     title: "Dernier Jumu'ah",
     container: 12300,
+    decimals: 0,
     subtitle: 'Vendredi dernier',
-    containerHover: 12300,
-    subtitleHover: 'collecté',
     unit: '€',
-    unitHover: '€',
+
+    beforeContainer: '+',
+    containerHover: 2.5,
+    decimalsHover: 2,
+    subtitleHover: 'Depuis le dernier Jumu\'ah',
+    unitHover: '%',
   },
   "prochain Palier": {
     title: 'Prochain Palier',
     subtitle: 'Restants à collecter',
-    subtitleHover: 'Pour la salle de prière',
     container: 52500,
-    containerHover: 4,
+    decimals: 0,
     unit: '€',
+
+    subtitleHover: 'Pour la salle de prière',
+    containerHover: 4,
+    decimalsHover: 2,
     unitHover: '%',
   },
   global: {
     title: 'Objectif Global',
     subtitle: 'Budget total projet',
-    subtitleHover: 'Pour terminer les travaux',
     container: 1200000,
-    containerHover: 29,
+    decimals: 0,
     unit: '€',
+
+    subtitleHover: 'Pour terminer les travaux',
+    containerHover: 29,
+    decimalsHover: 2,
     unitHover: '%',
   }
 }
 
 </script>
 <template>
-  <div class="grid grid-cols-4">
+  <div class="grid grid-cols-2">
     <ListStatCardElement
       :class="`text-primary ${props.classStatCard1}`"
       v-bind="statCards.total"

@@ -53,7 +53,7 @@ Exemple d'utilisation avec :
         <div
           class="
             relative
-            pl-9 
+            pl-9 phone:pl-6 tablet:pl-9
             py-3 [@media(--hbase)]:py-6
             flex flex-col justify-center
             gap-1 [@media(--hbase)]:gap-3
