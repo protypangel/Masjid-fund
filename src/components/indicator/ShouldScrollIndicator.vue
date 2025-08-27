@@ -1,23 +1,14 @@
 <!-- components/indicators/ScrollIndicator.vue -->
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import Arrow from '@/assets/arrow.svg'
+import Arrow from '@/assets/Arrow.svg'
+import type { ShouldScrollIndicatorProps } from '@/interfaces/indicator/ShouldScrollIndicator'
+import { defaultShouldScrollIndicatorProps } from '@/interfaces/indicator/ShouldScrollIndicator'
+const props = withDefaults(defineProps<ShouldScrollIndicatorProps>(), defaultShouldScrollIndicatorProps)
 
-
-type Direction = 'down' | 'up'
-
-const props = defineProps({
-  message: { type: String, default: 'Défilez pour en voir plus' },
-  direction: { type: String as () => Direction, default: 'down' }, // 'down' | 'up'
-  /** px de scroll avant de masquer l’indicateur (down) ou distance du bas (up) */
-  threshold: { type: Number, default: 40 },
-  /** masquer définitivement après le premier scroll seuil atteint */
-  hidePermanently: { type: Boolean, default: true },
-  /** démarrer visible ? */
-  initiallyVisible: { type: Boolean, default: true },
-  /** activer/désactiver l’animation de la flèche */
-  animated: { type: Boolean, default: true },
-})
+defineEmits<{
+  click: []
+}>()
 
 const visible = ref<boolean>(props.initiallyVisible)
 let hasHiddenOnce = false
@@ -85,6 +76,7 @@ onBeforeUnmount(() => {
       flex justify-center
     "
     aria-hidden="true"
+    @click="$emit('click')"
   >
     <transition name="fade-scale">
       <div
@@ -92,11 +84,9 @@ onBeforeUnmount(() => {
         class="
           pointer-events-auto inline-flex items-center 
           rounded-full border border-border/60 bg-background/70 px-4 py-2 shadow-sm backdrop-blur
-          tablet:hidden
         "
         :class="message ? 'gap-2' : 'gap-0'"
       >
-        <!-- Flèche SVG -->
         <Arrow           
          class="h-5 w-5"
           :class="[
@@ -104,7 +94,6 @@ onBeforeUnmount(() => {
             animated ? (isDown ? 'animate-bounce-down' : 'animate-bounce-up') : ''
           ]"/>
 
-        <!-- Message (slot ou prop) -->
         <slot>
           <span class="text-sm font-medium text-foreground/90">
             {{ message }}
