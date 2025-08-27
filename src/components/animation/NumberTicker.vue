@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="el" class="text-2xl font-bold">
+  <div ref="el">
     {{ current }}
   </div>
 </template>
