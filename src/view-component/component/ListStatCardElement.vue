@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<StatCardAndClassProps>(), {
 
 </script>
 <template>
-  <StatCard class="flex-1" :class="class">
+  <StatCard :class="class">
     <template #title>{{ title }}</template>
     <template #container>
       <div class="flex items-center gap-1">

@@ -2,6 +2,18 @@
 import ListStatCardElement from '@/view-component/component/ListStatCardElement.vue';
 import type { StatCardType, StatCardProps } from '@/view-component/interfaces/ListStatCard';
 
+const props = withDefaults(defineProps<{
+  classStatCard1?: string
+  classStatCard2?: string
+  classStatCard3?: string
+  classStatCard4?: string
+}>(), {
+  classStatCard1: '',
+  classStatCard2: '',
+  classStatCard3: '',
+  classStatCard4: '',
+})
+
 const statCards: Record<StatCardType, StatCardProps> = {
   total: {
     title: 'Total collécté',
@@ -43,27 +55,22 @@ const statCards: Record<StatCardType, StatCardProps> = {
 
 </script>
 <template>
-  <!-- todo: remove the h-[170px] when the card is fixed -->
-  <div class="laptop:flex">
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] laptop:flex laptop:flex-1">
-      <ListStatCardElement
-        class="text-primary"
-        v-bind="statCards.total"
-      />
-      <ListStatCardElement
-        class="text-secondary"
-        v-bind="statCards['last Jumu\'ah']"
-      />
-    </div>
-    <div class="grid grid-cols-1 tablet:grid-cols-2 laptop:flex laptop:flex-1">
-      <ListStatCardElement
-        class="text-accent"
-        v-bind="statCards['prochain Palier']"
-      />
-      <ListStatCardElement
-        class="text-accent"
-        v-bind="statCards.global"
-      />
-    </div>
+  <div class="grid grid-cols-4">
+    <ListStatCardElement
+      :class="`text-primary ${props.classStatCard1}`"
+      v-bind="statCards.total"
+    />
+    <ListStatCardElement
+      :class="`text-secondary ${props.classStatCard2}`"
+      v-bind="statCards['last Jumu\'ah']"
+    />
+    <ListStatCardElement  
+      :class="`text-accent ${props.classStatCard3}`"
+      v-bind="statCards['prochain Palier']"
+    />
+    <ListStatCardElement
+      :class="`text-accent ${props.classStatCard4}`"
+      v-bind="statCards.global"
+    />
   </div>
 </template>
