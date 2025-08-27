@@ -11,15 +11,18 @@ const props = withDefaults(defineProps<{
   class: ''
 });
 
+// if it's a mobile device or the user disabled it
+const disabled = computed(() => props.disabled || (navigator as any).userAgentData.mobile);
+
 function getColor(style: CSSStyleDeclaration) {
-  if (props.disabled) return 'transparent';
+  if (disabled) return 'transparent';
   return props.color || style?.color;
 }
 
 const hover = ref(false);
 
-const paddingDefault = props.disabled ? '' : 'p-2';
-const paddingHover = props.disabled ? '' : 'p-0';
+const paddingDefault = disabled ? '' : 'p-2';
+const paddingHover = disabled ? '' : 'p-0';
 
 const defaultBorderWidth = 'border-1';
 const borderWidthHover = 'border-4'
