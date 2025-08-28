@@ -13,6 +13,8 @@ function scrollToListStatCard() {
   if (!refListStatCard.value) return;
   refListStatCard.value.scrollIntoView({ behavior: 'smooth' });
 }
+
+const videoIndex = ref(0);
 </script>
 <template>
   <div
@@ -33,8 +35,10 @@ function scrollToListStatCard() {
       <div class="grow flex flex-row gap-4 w-full justify-center">
         <QrCode />
         <Video 
-          youtubeId="QLT7Je6up_w"
+          :youtubeIds="['QLT7Je6up_w', 'QvCpunO1mhc']"
           class="hidden [@media(min-width:620px)]:block"
+          :startIndex="videoIndex"
+          @changeIndexVideo="(index) => videoIndex = index"
         />
       </div>
       <ShouldScrollIndicator 
