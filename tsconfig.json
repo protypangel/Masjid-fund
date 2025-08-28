@@ -17,7 +17,10 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client"]
+    "moduleResolution": "bundler",
+    "types": ["vite/client", "vue"],
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
