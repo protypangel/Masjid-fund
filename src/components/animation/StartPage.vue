@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import Logo from '@/assets/logo.svg'
 
 withDefaults(defineProps<{
   disabled?: boolean

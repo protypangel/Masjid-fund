@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Logo from '@/assets/Logo.svg'
-import Mail from '@/assets/Mail.svg'
-import Phone from '@/assets/Phone.svg'
+import Logo from '@/assets/header/Logo.svg'
+import Mail from '@/assets/header/Mail.svg'
+import Phone from '@/assets/header/Phone.svg'
 import AnimationText from '@/components/animation/TextSwapColor.vue'
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -37,7 +37,6 @@ const hrefList = computed<Array<{
 <template>
   <header 
     class="
-      pointer-events-none
       w-screen inset-0
       flex justify-center
       bg-header shadow-soft border-b border-border 

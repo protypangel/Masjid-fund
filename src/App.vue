@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import StartPage from '@/components/animation/StartPage.vue'
 import SpecialRouterView from '@/components/animation/SpecialRouterView.vue'
-import Logo from '@/assets/logo.svg'
+import Logo from '@/assets/header/Logo.svg'
 
 import Header from '@/components/layouts/Header.vue'
 import Footer from '@/components/layouts/Footer.vue'
