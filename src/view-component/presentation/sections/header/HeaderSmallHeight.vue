@@ -22,7 +22,7 @@ const videoIndex = ref(0);
       w-full h-full
       flex flex-col items-center
     ">
-    <div class="min-h-1/2 w-full flex flex-col gap-6 items-center justify-around py-2">
+    <div class="h-1/2 w-full flex flex-col gap-4 items-center justify-around py-2">
       <Title>
         <template #title>
           <div class="flex items-center gap-2">
@@ -36,7 +36,7 @@ const videoIndex = ref(0);
         <QrCode />
         <Video 
           :youtubeIds="['QLT7Je6up_w', 'QvCpunO1mhc']"
-          class="hidden [@media(min-width:620px)]:block"
+          class="hidden [@media(min-width:620px)]:block max-w-1/2"
           :startIndex="videoIndex"
           @changeIndexVideo="(index) => videoIndex = index"
         />
@@ -51,9 +51,9 @@ const videoIndex = ref(0);
       class="w-full grow phone:max-w-3/4" 
       ref="refListStatCard">
       <ListStatCard 
-        class="w-full h-full items-center gap-x-16"
-        class-stat-card-1="col-span-2 tablet:col-span-1"
-        class-stat-card-2="col-span-2 phone:col-span-1"
+        class="w-full h-full items-center gap-x-8"
+        class-stat-card-1="col-span-2 [@media(min-width:550px)]:col-span-1"
+        class-stat-card-2="col-span-2 [@media(min-width:550px)]:col-span-1"
         class-stat-card-3="col-span-2"
         class-stat-card-4="col-span-2">
       </ListStatCard>
