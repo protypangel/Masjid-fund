@@ -22,14 +22,11 @@ function checkFilter() {
   filterTmpArray.push(...filterArray.slice(0, props.numberOfFilter));
   const hasNotAdded: StepStatus[] = StepStatus.filter(item => !filterTmpArray.includes(item));
   // if thats was not enough to obtain the necessary numberOfFilter , add elements that's hasn't been added yet
-  console.log(filterTmpArray.length, props.numberOfFilter, filterTmpArray.length < props.numberOfFilter);
   for (; filterTmpArray.length < props.numberOfFilter;) {
     const notAdded = hasNotAdded.shift();
-    console.log(notAdded);
     if (!notAdded) return;
     filterTmpArray.push(notAdded);
   }
-  console.log(filterTmpArray, filterTmpArray.length < props.numberOfFilter);
   emit('update:modelFilter', new Set(filterTmpArray));
 }
 
