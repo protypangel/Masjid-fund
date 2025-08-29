@@ -53,6 +53,15 @@ function toggleFilter() {
 }
 
 function toggleFilterElement(item: StepStatus) {
+  if (props.modelFilter.has(item)) {
+    props.modelFilter.delete(item);
+  } else if (props.modelFilter.size < props.numberOfFilter) {
+    props.modelFilter.add(item);
+  } else {
+    const filterArray = Array.from(props.modelFilter);
+    props.modelFilter.delete(filterArray[0]);
+    props.modelFilter.add(item);
+  }
   emit('update:modelFilter', props.modelFilter)
 }
 
@@ -61,7 +70,7 @@ function toggleFilterElement(item: StepStatus) {
   <div class="flex justify-between select-none">
     <div class="flex container">
       <div
-        class="flex bg-header border-y border-r border-border p-2 gap-2 items-center cursor-pointer"
+        class="flex bg-header border-y border-r border-border p-2 phone:px-3 gap-3 items-center cursor-pointer"
         v-for="(type, index) in types"
         :key="index"
         :class="{ 'bg-primary-light': actualPage === index }"
@@ -73,7 +82,7 @@ function toggleFilterElement(item: StepStatus) {
     </div>
     <div class="flex relative">
       <div
-        class="flex  bg-header border border-border rounded-[10px] px-2 py-3 gap-2 items-center cursor-pointer"
+        class="flex  bg-header border border-border rounded-[10px] px-2 phone:px-3 py-3 gap-3 items-center cursor-pointer"
         :class="{ 'bg-primary-light': filterOpen }"
         @click="toggleFilter"
       >
