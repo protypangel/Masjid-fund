@@ -2,32 +2,43 @@
 import FilterIcon from '@/assets/project/Filter.svg'
 import CheckIcon from '@/assets/project/check.svg'
 
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage } from '@/interfaces/layouts/Timeline'
 
 const props = defineProps<FilterProps>()
 const emit = defineEmits<FilterEmits>()
 
-if (props.onlyOnFilter) {
-  const filterArray = Array.from(props.modelFilter);
-  switch (filterArray.length) {
-    case 0:
-      props.modelFilter.add('todo')
-      emit('update:modelFilter', props.modelFilter)
-      break;
-    case 1:
-      break;
-    default:
-      props.modelFilter.clear()
-      props.modelFilter.add(filterArray[0])
-      emit('update:modelFilter', props.modelFilter)
-      break;
-  }
-}
-
 const types = typesPage
 const actualPage = ref(0)
 const filterOpen = ref(false)
+
+function checkFilter() {
+  if (props.numberOfFilter === props.modelFilter.size) return;
+  const filterArray = Array.from(props.modelFilter);
+  const filterTmpArray: StepStatus[] = [];
+  props.modelFilter.clear();
+  
+  // add the first N elements for each numberOfFilter
+  filterTmpArray.push(...filterArray.slice(0, props.numberOfFilter));
+  const hasNotAdded: StepStatus[] = StepStatus.filter(item => !filterTmpArray.includes(item));
+  // if thats was not enough to obtain the necessary numberOfFilter , add elements that's hasn't been added yet
+  console.log(filterTmpArray.length, props.numberOfFilter, filterTmpArray.length < props.numberOfFilter);
+  for (; filterTmpArray.length < props.numberOfFilter;) {
+    const notAdded = hasNotAdded.shift();
+    console.log(notAdded);
+    if (!notAdded) return;
+    filterTmpArray.push(notAdded);
+  }
+  console.log(filterTmpArray, filterTmpArray.length < props.numberOfFilter);
+  emit('update:modelFilter', new Set(filterTmpArray));
+}
+
+onMounted(() => {
+  checkFilter();
+})
+watch(() => props.numberOfFilter, () => {
+  checkFilter();
+})
 
 const filter = reactive<Record<StepStatus, string>>({
   todo: 'A faire',
@@ -44,20 +55,7 @@ function toggleFilter() {
   filterOpen.value = !filterOpen.value
 }
 
-function toggleFilterOnlyOne(item: StepStatus) {
-  if (props.modelFilter.has(item)) return;
-  props.modelFilter.clear()
-  props.modelFilter.add(item)
-  emit('update:modelFilter', props.modelFilter)
-}
-
 function toggleFilterElement(item: StepStatus) {
-  if (props.onlyOnFilter) return toggleFilterOnlyOne(item);
-  if (props.modelFilter.has(item)) {
-    props.modelFilter.delete(item)
-  } else {
-    props.modelFilter.add(item)
-  }
   emit('update:modelFilter', props.modelFilter)
 }
 

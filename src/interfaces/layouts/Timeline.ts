@@ -1,6 +1,11 @@
 export const StepStatus = ['todo', 'doing', 'done'] as const
 export type StepStatus = typeof StepStatus[number]
 
+type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N ? Acc[number] : Enumerate<N, [...Acc, Acc['length']]>
+// type: 1|...| N
+type OneToN<N extends number> = Exclude<Enumerate<N> | N, 0>
+export type NumberOfFilter = OneToN<typeof StepStatus.length>
+
 export type Link = {
   label: string
   href: string
@@ -16,6 +21,7 @@ export interface TimelineStep {
   description?: string
   status: StepStatus
   progress: number
+  weight: number
   periode: {
     start: string
     end: string
@@ -53,7 +59,7 @@ export const typesPage: FilterPage[] = [
 export interface FilterProps {
   modelPage: FilterPageLabel,
   modelFilter: Set<StepStatus>,
-  onlyOnFilter: boolean
+  numberOfFilter: NumberOfFilter
 }
 
 export interface FilterEmits {
