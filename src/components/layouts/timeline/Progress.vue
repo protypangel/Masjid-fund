@@ -35,12 +35,12 @@ onMounted(() => {
 
 </script>
 <template>
-  <div class="relative rounded-full flex w-full h-2 bg-muted-foreground/20 overflow-hidden">
+  <div class="relative rounded-full flex w-full h-2 overflow-hidden" :class="statusUI.todo.background">
     <div
       v-for="(purcent, index) in purcents" 
       :key="index"
       class="absolute left-0 top-0 rounded-full h-full transition-[width] duration-2000"
-      :class="`bg-${statusUI[index].color}`"
+      :class="statusUI[index].background"
       :style="{ width: purcent + '%' }"/>
   </div>
   <div class="flex items-center gap-2 text-xs text-muted-foreground px-2">
@@ -48,7 +48,7 @@ onMounted(() => {
       class="flex items-baseline gap-1"
       v-for="(status, index) in statusUI" 
       :key="index">
-      <div class="h-2 w-2 rounded-full" :class="`bg-${statusUI[index].color}`"></div>
+      <div class="h-2 w-2 rounded-full" :class="statusUI[index].background"></div>
       <span>{{ status.title }}</span>
     </div>
   </div>
