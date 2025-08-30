@@ -4,7 +4,6 @@ import QrCode from '@/view-component/component/QrCode.vue';
 import ShouldScrollIndicator from '@/components/indicator/ShouldScrollIndicator.vue';
 import ListStatCard from '@/view-component/component/ListStatCard.vue';
 import { ref } from 'vue';
-import Timeline from '@/view-component/component/Timeline.vue';
 import Video from '@/view-component/component/Video.vue';
 
 const refListStatCard = ref<HTMLElement | null>(null);
@@ -18,11 +17,12 @@ const videoIndex = ref(0);
 </script>
 <template>
   <div
-    class="
-      w-full h-full
+    class=" 
+      w-full height-size
       flex flex-col items-center
+      px-4
     ">
-    <div class="h-1/2 w-full flex flex-col gap-4 items-center justify-around py-2">
+    <div class=" w-full flex flex-col gap-4 items-center justify-around py-2">
       <Title>
         <template #title>
           <div class="flex items-center gap-2">
@@ -47,8 +47,14 @@ const videoIndex = ref(0);
         @click="scrollToListStatCard"
       />
     </div>
+    <Video 
+        :youtubeIds="['QLT7Je6up_w', 'QvCpunO1mhc']"
+        class="[@media(min-width:620px)]:hidden w-full p-8"
+        :startIndex="videoIndex"
+        @changeIndexVideo="(index) => videoIndex = index"
+      />
     <div 
-      class="w-full grow phone:max-w-3/4" 
+      class="w-full phone:max-w-3/4" 
       ref="refListStatCard">
       <ListStatCard 
         class="w-full h-full items-center gap-x-8"
@@ -60,3 +66,19 @@ const videoIndex = ref(0);
     </div>
   </div>
 </template>
+<style scoped>
+.height-size {
+  height: 300%;
+}
+.height-size > div {
+  height: calc(1/3 * 100%);
+}
+@media (min-width: 620px) {
+  .height-size {
+    height: 200%;
+  }
+  .height-size > div {
+    height: calc(1/2 * 100%);
+  }
+}
+</style>
