@@ -26,8 +26,8 @@ const numberOfFilter = ref<NumberOfFilter>(3)
 
 function checkOnlyOnFilter() {
   numberOfFilter.value = 
-    window?.innerWidth <= 425 ? 1 :
-    window?.innerWidth <= 768 ? 2 : 3
+    window?.innerWidth <= 600 ? 1 :
+    window?.innerWidth < 900 ? 2 : 3
 }
 
 onMounted(() => {
@@ -63,16 +63,27 @@ onUnmounted(() => {
       v-model:modelFilter="currentFilter"
       :numberOfFilter="numberOfFilter"
     />
-     <!-- Steps -->
-    <Kanban 
-      v-if="currentPage === 'Kanban'" 
-      :steps="filteredSteps"
-      :currentFilter="currentFilter"
-    />
-    <Gantt 
-      v-if="currentPage === 'Gantt'" 
-      :steps="filteredSteps"
-      :currentFilter="currentFilter"
-    />
+    <transition name="fade" mode="out-in">
+      <Kanban 
+        v-if="currentPage === 'Kanban'" 
+        :steps="filteredSteps"
+        :currentFilter="currentFilter"
+      />
+      <Gantt 
+        v-else-if="currentPage === 'Gantt'" 
+        :steps="filteredSteps"
+        :currentFilter="currentFilter"
+      />
+    </transition>
   </div>
 </template>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-in;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
