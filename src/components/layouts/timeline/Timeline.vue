@@ -4,6 +4,8 @@ import { computed, reactive, ref, onMounted, onUnmounted } from 'vue'
 import ListIcon from '@/assets/List.svg'
 import Type from './Filter.vue'
 import Progress from './Progress.vue'
+import Kanban from './kanban/Kanban.vue'
+import Gantt from './gantt/Gantt.vue'
 
 const props = withDefaults(defineProps<TimelineProps>(), {
   title: 'Timeline',
@@ -23,7 +25,9 @@ const totalPurcent = ref(0)
 const numberOfFilter = ref<NumberOfFilter>(3)
 
 function checkOnlyOnFilter() {
-  numberOfFilter.value = 2 //window?.innerWidth > 425 ? 1 : 2
+  numberOfFilter.value = 
+    window?.innerWidth <= 425 ? 1 :
+    window?.innerWidth <= 768 ? 2 : 3
 }
 
 onMounted(() => {
@@ -35,7 +39,8 @@ onUnmounted(() => {
 })
 </script>
 <template>
-  <div class="flex flex-col gap-4">
+  
+  <div class="flex flex-col gap-4 overflow-hidden">
     <!-- Header -->
     <div class="flex gap-2 font-semibold text-primary text-base items-center">
       <ListIcon class="w-8 h-8 [--background-color:theme(--color-primary-light)]"/>
@@ -58,17 +63,16 @@ onUnmounted(() => {
       v-model:modelFilter="currentFilter"
       :numberOfFilter="numberOfFilter"
     />
-    {{ numberOfFilter }}
-    {{ currentPage }}
-    {{ currentFilter }}
      <!-- Steps -->
-      <div 
-        class="flex"
-        v-for="(step, index) in filteredSteps"
-        :key="index"
-      >  
-        <!-- Header -->
-         
-      </div>
+    <Kanban 
+      v-if="currentPage === 'Kanban'" 
+      :steps="filteredSteps"
+      :currentFilter="currentFilter"
+    />
+    <Gantt 
+      v-if="currentPage === 'Gantt'" 
+      :steps="filteredSteps"
+      :currentFilter="currentFilter"
+    />
   </div>
 </template>
