@@ -2,11 +2,12 @@
 import FilterIcon from '@/assets/project/Filter.svg'
 import CheckIcon from '@/assets/project/check.svg'
 
-import { reactive, ref, onMounted, watch } from 'vue'
+  import { reactive, ref, onMounted, watch, onUnmounted } from 'vue'
 import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage } from '@/interfaces/layouts/Timeline'
 
 const props = defineProps<FilterProps>()
 const emit = defineEmits<FilterEmits>()
+const filterContainer = ref<HTMLElement | null>(null)
 
 const types = typesPage
 const actualPage = ref(0)
@@ -30,8 +31,17 @@ function checkFilter() {
   emit('update:modelFilter', new Set(filterTmpArray));
 }
 
+function checkCloseFilter(event: MouseEvent) {
+  if (!(event.target instanceof HTMLElement)) return;
+  if (!filterContainer.value) return;
+  if (!filterContainer.value.contains(event.target)) toggleFilter();
+}
+
 onMounted(() => {
   checkFilter();
+})
+onUnmounted(() => {
+  window.removeEventListener('click', checkCloseFilter);
 })
 watch(() => props.numberOfFilter, () => {
   checkFilter();
@@ -49,6 +59,11 @@ function changePage(label: FilterPageLabel, index: number) {
 }
 
 function toggleFilter() {
+  if (!filterOpen.value)
+    window.addEventListener('click', checkCloseFilter);
+  else
+    window.removeEventListener('click', checkCloseFilter);
+
   filterOpen.value = !filterOpen.value
 }
 
@@ -80,7 +95,7 @@ function toggleFilterElement(item: StepStatus) {
         <span class="hidden phone:block text-sm font-semibold">{{ type.title }}</span>
       </div>
     </div>
-    <div class="flex relative">
+    <div class="flex relative" ref="filterContainer">
       <div
         class="flex  bg-header border border-border rounded-[10px] px-2 phone:px-3 py-3 gap-3 items-center cursor-pointer"
         :class="{ 'bg-primary-light': filterOpen }"
