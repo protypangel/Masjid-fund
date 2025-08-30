@@ -8,15 +8,21 @@ import Header from '@/components/layouts/Header.vue'
 import Footer from '@/components/layouts/Footer.vue'
 
 import type HeaderType from '@/interfaces/layouts/Header'
+import router from '@/router'
+import { firstLetterToUppercase } from '@/interfaces/layouts/Timeline'
 
 const path = ref<string>('')
+
+
+const navItems = router.getRoutes().filter(router => router.name !== 'home').map(route => ({
+  label: firstLetterToUppercase(route.name as string),
+  path: route.path,
+}))
 
 const header: HeaderType = {
 	phone: '+33 1 43 91 06 92',
 	email: 'vitry-sur-seine.nour-essalam@al-muminune.org',
-	navItems: [
-		{ label: 'Suivi', path: '/recap' }
-	]
+	navItems
 }
 
 </script>
