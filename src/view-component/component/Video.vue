@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, nextTick, onMounted, onBeforeUnmount, watch } from 'vue'
-import PlayIcon from '@/assets/play.svg'
-import ChangeVideoIcon from '@/assets/ChangeVideo.svg'
+import PlayIcon from '@/assets/video/play.svg'
+import ChangeVideoIcon from '@/assets/video/ChangeVideo.svg'
 
 const props = withDefaults(defineProps<{
   youtubeIds?: string[]
