@@ -1,5 +1,5 @@
 export const StepStatus = ['todo', 'doing', 'done'] as const
-export type StepStatus = typeof StepStatus[number]
+export type StepStatusType = typeof StepStatus[number]
 
 type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] extends N ? Acc[number] : Enumerate<N, [...Acc, Acc['length']]>
 // type: 1|...| N
@@ -9,7 +9,7 @@ export type NumberOfFilter = OneToN<typeof StepStatus.length>
 export type FilterPageLabel = 'Kanban' | 'Gantt'
 
 
-export const statusUI: Record<StepStatus, { title: string, color: string, background: string}> = {
+export const statusUI: Record<StepStatusType, { title: string, color: string, background: string}> = {
   done: {
     title: 'Terminé',
     color: 'text-primary-foreground',
@@ -28,7 +28,7 @@ export const statusUI: Record<StepStatus, { title: string, color: string, backgr
 }
 
 export interface StepProgressProps {
-  status: StepStatus
+  status: StepStatusType
   progress: number
 }
 

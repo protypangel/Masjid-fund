@@ -1,9 +1,10 @@
 <script setup lang="ts">
+
 import FilterIcon from '@/assets/project/Filter.svg'
 import CheckIcon from '@/assets/project/check.svg'
 
 import { reactive, ref, onMounted, watch, onUnmounted } from 'vue'
-import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage } from '@/interfaces/layouts/Timeline/Filter'
+import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage, StepStatusType } from '@/interfaces/layouts/Timeline/Filter'
 
 const props = defineProps<FilterProps>()
 const emit = defineEmits<FilterEmits>()
@@ -16,12 +17,12 @@ const filterOpen = ref(false)
 function checkFilter() {
   if (props.numberOfFilter === props.modelFilter.size) return;
   const filterArray = Array.from(props.modelFilter);
-  const filterTmpArray: StepStatus[] = [];
+  const filterTmpArray: StepStatusType[] = [];
   props.modelFilter.clear();
   
   // add the first N elements for each numberOfFilter
   filterTmpArray.push(...filterArray.slice(0, props.numberOfFilter));
-  const hasNotAdded: StepStatus[] = StepStatus.filter(item => !filterTmpArray.includes(item));
+  const hasNotAdded: StepStatusType[] = StepStatus.filter(item => !filterTmpArray.includes(item));
   // if thats was not enough to obtain the necessary numberOfFilter , add elements that's hasn't been added yet
   for (; filterTmpArray.length < props.numberOfFilter;) {
     const notAdded = hasNotAdded.shift();
@@ -47,7 +48,7 @@ watch(() => props.numberOfFilter, () => {
   checkFilter();
 })
 
-const filter = reactive<Record<StepStatus, string>>({
+const filter = reactive<Record<StepStatusType, string>>({
   todo: 'A faire',
   doing: 'En cours',
   done: 'Terminé',
@@ -67,7 +68,7 @@ function toggleFilter() {
   filterOpen.value = !filterOpen.value
 }
 
-function toggleFilterElement(item: StepStatus) {
+function toggleFilterElement(item: StepStatusType) {
   if (props.modelFilter.has(item)) {
     props.modelFilter.delete(item);
   } else if (props.modelFilter.size < props.numberOfFilter) {
@@ -110,7 +111,7 @@ function toggleFilterElement(item: StepStatus) {
           class="
             bg-header shadow-md
             border border-border rounded-[10px]
-            absolute top-full mt-2 right-0
+            absolute z-99 top-full mt-2 right-0
             flex flex-col gap-2 p-2
             w-max
           ">
@@ -128,7 +129,7 @@ function toggleFilterElement(item: StepStatus) {
               >
                 <p class="text-sm font-semibold">{{ item }}</p>
                 <CheckIcon 
-                  :class="[props.modelFilter.has(index as StepStatus) ? 'opacity-100' : 'opacity-0']"
+                  :class="[props.modelFilter.has(index as StepStatusType) ? 'opacity-100' : 'opacity-0']"
                   class="
                     transition-all duration-300
                     w-4
