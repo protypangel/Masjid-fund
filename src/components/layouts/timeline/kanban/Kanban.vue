@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { firstLetterToUppercase, StepStatus, statusUI, TimelineStep, KanbanProps } from '@/interfaces/layouts/Timeline/Kanban';
-import Card from './Card.vue';
+import { StepStatus, statusUI, TimelineStep, KanbanProps } from '@/interfaces/layouts/Timeline/Kanban';
+import Card from './Card.vue';  
 import { computed } from 'vue';
+import { StringFormatter } from '@/interfaces/functions/Formatter';
 
 const props = defineProps<KanbanProps>();
 
@@ -30,7 +31,7 @@ const gridCols = computed(() => {
             statusUI[index].color,
           ]"
           >
-          <span>{{ firstLetterToUppercase(statusUI[index].title) }}</span>
+          <span>{{ StringFormatter.firstLetterToUppercase(statusUI[index].title) }}</span>
           <span class="text-sm font-semibold"> {{ steps.length }} </span>
         </p>
         <Card v-for="step in steps" v-bind="step" />

@@ -1,18 +1,19 @@
 export { StepStatus } from './Timeline'
 export type { NumberOfFilter } from './Timeline'
+export type { FilterPageLabel } from './Timeline'
 
 import GanttIcon from '@/assets/project/Gantt.svg'
 import KanbanIcon from '@/assets/project/Kanban.svg'
 
 import { StepStatus } from './Timeline'
 import type { NumberOfFilter } from './Timeline'
+import type { FilterPageLabel } from './Timeline'
 
 
 export interface FilterPage {
   icon: string
   title: FilterPageLabel
 }
-export type FilterPageLabel = 'Kanban' | 'Gantt'
 
 export const typesPage: FilterPage[] = [
   {

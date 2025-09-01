@@ -6,6 +6,9 @@ type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] exte
 type OneToN<N extends number> = Exclude<Enumerate<N> | N, 0>
 export type NumberOfFilter = OneToN<typeof StepStatus.length>
 
+export type FilterPageLabel = 'Kanban' | 'Gantt'
+
+
 export const statusUI: Record<StepStatus, { title: string, color: string, background: string}> = {
   done: {
     title: 'Terminé',

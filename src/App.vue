@@ -9,13 +9,13 @@ import Footer from '@/components/layouts/Footer.vue'
 
 import type HeaderType from '@/interfaces/layouts/Header'
 import router from '@/router'
-import { firstLetterToUppercase } from '@/interfaces/layouts/Timeline'
+import { StringFormatter } from '@/interfaces/functions/Formatter'
 
 const path = ref<string>('')
 
 
 const navItems = router.getRoutes().filter(router => router.name !== 'home').map(route => ({
-  label: firstLetterToUppercase(route.name as string),
+  label: StringFormatter.firstLetterToUppercase(route.name as string),
   path: route.path,
 }))
 

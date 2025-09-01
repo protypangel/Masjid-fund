@@ -2,8 +2,8 @@
 import FilterIcon from '@/assets/project/Filter.svg'
 import CheckIcon from '@/assets/project/check.svg'
 
-  import { reactive, ref, onMounted, watch, onUnmounted } from 'vue'
-import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage } from '@/interfaces/layouts/Timeline'
+import { reactive, ref, onMounted, watch, onUnmounted } from 'vue'
+import { FilterEmits, FilterProps, FilterPageLabel, StepStatus, typesPage } from '@/interfaces/layouts/Timeline/Filter'
 
 const props = defineProps<FilterProps>()
 const emit = defineEmits<FilterEmits>()
