@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { StepStatusToPurcent, Purcent, ProgressProps, ProgressEmits, statusUI } from '@/interfaces/layouts/Timeline'
+import { StepStatusToPurcent, Purcent, ProgressProps, ProgressEmits, statusUI } from '@/interfaces/layouts/Timeline/Progress'
 import { ref, onMounted, nextTick, computed, ComputedRef } from 'vue'
 
 const props = defineProps<ProgressProps>()

@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { firstLetterToUppercase, StepStatus, statusUI, TimelineStep } from '@/interfaces/layouts/Timeline';
+import { firstLetterToUppercase, StepStatus, statusUI, TimelineStep, KanbanProps } from '@/interfaces/layouts/Timeline/Kanban';
 import Card from './Card.vue';
 import { computed } from 'vue';
 
-const props = defineProps<{
-  steps: TimelineStep[],
-  currentFilter: Set<StepStatus>,
-}>();
+const props = defineProps<KanbanProps>();
 
 const stepStatus = computed<Record<StepStatus, TimelineStep[]>>(() => {
   return props.steps.reduce((acc, step) => {
@@ -16,10 +13,14 @@ const stepStatus = computed<Record<StepStatus, TimelineStep[]>>(() => {
   }, {} as Record<StepStatus, TimelineStep[]>)
 })
 
+const gridCols = computed(() => {
+  return `grid-cols-${props.currentFilter.size}`
+})
+
 </script>
 
 <template>
-  <div class="grid gap-4" :class="`grid-cols-${currentFilter.size}`">
+  <div class="grid gap-4" :style="{ 'grid-template-columns': `repeat(${props.currentFilter.size}, minmax(0, 1fr))` }">
     <div
       v-for="(steps, index) in stepStatus" :key="index" class="flex flex-col gap-4 grid-col-span-1">
         <p 

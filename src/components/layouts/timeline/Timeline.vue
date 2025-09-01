@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FilterPageLabel, TimelineProps, StepStatus, NumberOfFilter } from '@/interfaces/layouts/Timeline'
+import { FilterPageLabel, TimelineProps, StepStatus, NumberOfFilter } from '@/interfaces/layouts/Timeline/Timeline'
 import { computed, reactive, ref, onMounted, onUnmounted } from 'vue'
 import ListIcon from '@/assets/List.svg'
 import Type from './Filter.vue'
