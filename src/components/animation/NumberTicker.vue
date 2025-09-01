@@ -53,6 +53,5 @@ const formatted = computed(() =>
 <template>
   <div ref="el">
     {{ formatted }}
-    <!-- ou {{ current }} si tu ne veux pas de formatage -->
   </div>
 </template>
