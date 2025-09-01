@@ -3,6 +3,7 @@ import { StepStatus, statusUI, TimelineStep, KanbanProps } from '@/interfaces/la
 import Card from './Card.vue';  
 import { computed } from 'vue';
 import { StringFormatter } from '@/interfaces/functions/Formatter';
+import Badge from '@/assets/timeline/BadgeCheck.svg';
 
 const props = defineProps<KanbanProps>();
 
@@ -24,16 +25,39 @@ const gridCols = computed(() => {
   <div class="grid gap-4" :style="{ 'grid-template-columns': `repeat(${props.currentFilter.size}, minmax(0, 1fr))` }">
     <div
       v-for="(steps, index) in stepStatus" :key="index" class="flex flex-col gap-4 grid-col-span-1">
-        <p 
-          class="text-base font-semibold px-4 py-2 rounded-md flex items-center justify-between gap-2"
+        <div
+          class="
+            text-base font-semibold 
+            pr-4
+            rounded-md 
+            flex items-center justify-between gap-2 overflow-hidden
+          "
           :class="[
             statusUI[index].background,
             statusUI[index].color,
+            index !== 'done' ? 'py-2 pl-4' : ''
           ]"
+          
           >
-          <span>{{ StringFormatter.firstLetterToUppercase(statusUI[index].title) }}</span>
-          <span class="text-sm font-semibold"> {{ steps.length }} </span>
-        </p>
+          <div class="flex items-center gap-2">
+            <div class=""
+              :class="index === 'done' ? [
+                'bg-primary-dark',
+                'py-[11.5px] px-[11.5px]'
+              ] : [
+              ]"
+              >
+              <Badge
+                v-if="index === 'done'"
+                class="w-5 h-5"
+                :style="'--background-color: var(--color-primary)'"
+              />
+              <div v-else />
+            </div>
+            <p>{{ StringFormatter.firstLetterToUppercase(statusUI[index].title) }}</p>
+          </div>
+          <p class="text-sm font-semibold"> {{ steps.length }} </p>
+        </div>
         <Card v-for="step in steps" v-bind="step" />
     </div>
   </div>
