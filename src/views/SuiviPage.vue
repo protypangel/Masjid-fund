@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TimelineStep } from '@/interfaces/layouts/Timeline'
+import { TimelineStep } from '@/interfaces/layouts/Timeline/Timeline'
 import Timeline from '@/components/layouts/timeline/Timeline.vue'
 const steps: TimelineStep[] = [
     {
