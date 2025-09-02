@@ -32,19 +32,36 @@ const videoIndex = ref(0);
           </div>
         </template>
       </Title>
-      <div class="grow flex flex-row gap-4 w-full justify-center">
-        <QrCode />
-        <Video 
-          :youtubeIds="['QLT7Je6up_w', 'QvCpunO1mhc']"
-          class="hidden [@media(min-width:620px)]:block max-w-1/2"
-          :startIndex="videoIndex"
-          @changeIndexVideo="(index) => videoIndex = index"
-        />
+      <!-- <ListStatCard
+        class="w-full items-center gap-x-4"
+        class-stat-card-1="col-span-1 "
+        class-stat-card-2="col-span-1"
+        class-stat-card-3="col-span-1"
+        class-stat-card-4="col-span-1">
+      </ListStatCard> -->
+
+      <div class="grow w-full flex items-center">
+        <div 
+        class="
+          flex flex-row gap-4 
+          justify-center 
+          h-full max-h-[350px] w-full
+        ">
+          <QrCode />
+          <Video 
+            :youtubeIds="['QLT7Je6up_w', 'QvCpunO1mhc']"
+            class="hidden grow [@media(min-width:620px)]:block max-w-1/2"
+            :startIndex="videoIndex"
+            @changeIndexVideo="(index) => videoIndex = index"
+          />
+        </div>
       </div>
       <ShouldScrollIndicator 
         :shouldScroll="true"
         :scrollDirection="'down'"
         @click="scrollToListStatCard"
+        :message="'Défilez pour voir les statistiques'"
+
       />
     </div>
     <Video 
@@ -54,14 +71,14 @@ const videoIndex = ref(0);
         @changeIndexVideo="(index) => videoIndex = index"
       />
     <div 
-      class="w-full phone:max-w-3/4" 
+      class="w-full phone:max-w-3/4 flex flex-col justify-center mx-auto"
       ref="refListStatCard">
       <ListStatCard 
-        class="w-full h-full items-center gap-x-8"
-        class-stat-card-1="col-span-2 [@media(min-width:550px)]:col-span-1"
-        class-stat-card-2="col-span-2 [@media(min-width:550px)]:col-span-1"
-        class-stat-card-3="col-span-2"
-        class-stat-card-4="col-span-2">
+        class="w-full h-full items-center gap-x-8 gap-y-4"
+        class-stat-card-1="col-span-4 tablet:col-span-2"
+        class-stat-card-2="col-span-4 tablet:col-span-2"
+        class-stat-card-3="col-span-4 tablet:col-span-2"
+        class-stat-card-4="col-span-4 tablet:col-span-2">
       </ListStatCard>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HeaderSmallHeight from './HeaderSmallHeight.vue';
+import HeaderSmallHeight from './HeaderLowResolution.vue';
 </script>
 
 <template>

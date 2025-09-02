@@ -68,7 +68,7 @@ const statCards: Record<StatCardType, StatCardProps> = {
 
 </script>
 <template>
-  <div class="grid grid-cols-2">
+  <div class="grid grid-cols-4">
     <ListStatCardElement
       :class="`text-primary ${props.classStatCard1}`"
       v-bind="statCards.total"
